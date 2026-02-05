@@ -13,14 +13,16 @@ env = environ.Env(
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # --- Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+environ.Env.read_env(os.path.join(BASE_DIR, "../.env"))
 
 SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS_LIST = env.list("ALLOWED_HOSTS")
+
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 INSTALLED_APPS = (
     "django.contrib.admin",
@@ -33,12 +35,8 @@ INSTALLED_APPS = (
     "django.contrib.postgres",
 )
 
-LOCAL_APPS = ("shop", "website")
+LOCAL_APPS = ("accounts", "shop", "website")
 THIRD_PARTY_APPS = (
-    "django_extensions",
-    "rest_framework",
-    "corsheaders",
-    "django_filters",
     "unfold.contrib.filters",  # optional, if special filters are needed
     "unfold.contrib.forms",  # optional, if special form elements are needed
     "unfold.contrib.inlines",  # optional, if special inlines are needed
@@ -47,6 +45,10 @@ THIRD_PARTY_APPS = (
     "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
+    "django_extensions",
+    "rest_framework",
+    "corsheaders",
+    "django_filters",
 )
 
 INSTALLED_APPS += LOCAL_APPS + THIRD_PARTY_APPS
@@ -206,12 +208,12 @@ USE_I18N = True
 USE_TZ = True
 
 # --- Static files (CSS, JavaScript, Images)
-STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_URL = "/static/"
+STATIC_ROOT = env("DJANGO_STATIC_ROOT")
+STATICFILES_DIRS = ("static/",)
 
 # Media files (User uploads)
-MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
