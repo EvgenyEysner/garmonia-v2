@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import heroBg from "@/assets/images/home-header.webp";
+
 const scroTollContact = () => {
   const contactctSection = document.querySelector("#contact");
   contactctSection?.scrollIntoView({ behavior: "smooth" });
@@ -10,7 +12,10 @@ const scroTollContact = () => {
     class="relative flex items-center justify-center min-h-screen bg-gradient-gold"
   >
     <!-- Background overlay -->
-    <div class="absolute inset-0 bg-black/30"></div>
+    <div
+      class="absolute inset-0 bg-cover bg-cover"
+      :style="{ backgroundImage: `url(${heroBg})` }"
+    />
     <!-- Content -->
     <div class="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
       <h1
