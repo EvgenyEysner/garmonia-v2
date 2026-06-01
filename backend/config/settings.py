@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     "django.contrib.postgres",
 )
 
-LOCAL_APPS = ("accounts", "shop", "website")
+LOCAL_APPS = ("accounts", "shop", "app")
 THIRD_PARTY_APPS = (
     "unfold",
     "unfold.contrib.filters",  # optional, if special filters are needed

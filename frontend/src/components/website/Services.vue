@@ -138,7 +138,7 @@ onUnmounted(() => {
       <header class="text-center mb-10 md:mb-14">
         <h2
           id="services-heading"
-          class="inline-flex items-center justify-center gap-3 text-3xl md:text-4xl font-bold text-gold-800 font-heading"
+          class="inline-flex items-center justify-center gap-3 text-3xl md:text-4xl font-bold text-gold-600 font-heading"
         >
           Unsere Leistungen
           <span class="text-gold-400" aria-hidden="true">
