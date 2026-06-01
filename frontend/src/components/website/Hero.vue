@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import heroBg from "@/assets/images/home-header.webp";
 
-const scroTollContact = () => {
+const scrollToContact = () => {
   const contactctSection = document.querySelector("#contact");
   contactctSection?.scrollIntoView({ behavior: "smooth" });
 };
@@ -28,7 +28,7 @@ const scroTollContact = () => {
         Ihr Wohlfühlort für Schönheit & Entspannung
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-        <button @click="scroTollContact" class="btn btn-primary btn-lg shadow-gold">
+        <button @click="scrollToContact" class="btn btn-primary btn-lg shadow-gold">
           Kontakt aufnehmen
         </button>
       </div>
