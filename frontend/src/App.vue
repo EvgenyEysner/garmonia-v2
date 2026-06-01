@@ -3,6 +3,7 @@ import Navbar from "./components/common/Navbar.vue";
 import Hero from "@/components/website/Hero.vue";
 import Footer from "@/components/common/Footer.vue";
 import About from "@/components/website/About.vue";
+import Services from "@/components/website/Services.vue";
 </script>
 
 <template>
@@ -14,30 +15,11 @@ import About from "@/components/website/About.vue";
     <!-- <Hero /> -->
 
     <!-- About Section -->
-    <section id="about" class="section scroll-mt-nav">
-      <About />
-    </section>
-
+    <About />
+    <!-- <About /> -->
     <!-- Services Section -->
-    <section id="services" class="section section-alt scroll-mt-nav">
-      <div class="container-custom">
-        <h2 class="text-center mb-12">Unsere Leistungen</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Service Card Beispiel -->
-          <div class="card">
-            <div class="card-body">
-              <h3 class="text-xl font-bold mb-3">Gesichtsbehandlung</h3>
-              <p class="text-sand-600 mb-4">
-                Professionelle Gesichtspflege für jeden Hauttyp
-              </p>
-              <p class="text-gold-500 font-bold">ab 59€</p>
-            </div>
-          </div>
-          <!-- Weitere Services kommen hier -->
-        </div>
-      </div>
-    </section>
-
+    <Services />
+    <!-- <Services /> -->
     <!-- Gallery Section -->
     <section id="gallery" class="section scroll-mt-nav">
       <div class="container-custom">
