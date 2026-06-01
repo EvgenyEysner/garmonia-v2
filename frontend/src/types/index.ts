@@ -11,14 +11,23 @@ export interface NavItem {
   href: string;
 }
 
-// Footer Interfaces
-interface SocialLink {
+// Service (Leistungen)
+export interface ServiceItem {
+  id: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+// Footer
+export interface SocialLink {
   url: string;
   icon: string;
   name: string;
 }
 
-interface FooterLink {
+export interface FooterLink {
   label: string;
   href: string;
 }

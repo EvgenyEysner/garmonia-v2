@@ -1,5 +1,5 @@
-<script lang="ts">
-import type { FooterLink, SocialLink } from "@types";
+<script setup lang="ts">
+import type { FooterLink, SocialLink } from "@/types";
 
 const currentYear = new Date().getFullYear();
 const socialLinks: SocialLink[] = [
@@ -39,7 +39,38 @@ const footerLinks: FooterLink[] = [
             </p>
           </div>
         </div>
+
+        <div>
+          <h3 class="text-xl font-bold text-gold-400 mb-4">Folgen Sie uns</h3>
+          <ul class="space-y-2">
+            <li v-for="link in socialLinks" :key="link.name">
+              <a
+                :href="link.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sand-300 hover:text-gold-400 transition-colors"
+              >
+                {{ link.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold text-gold-400 mb-4">Rechtliches</h3>
+          <ul class="space-y-2">
+            <li v-for="link in footerLinks" :key="link.href">
+              <a :href="link.href" class="text-sand-300 hover:text-gold-400 transition-colors">
+                {{ link.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+
+      <p class="mt-10 pt-6 border-t border-sand-700 text-center text-sand-400 text-sm">
+        © {{ currentYear }} Schönheitsecke Oldenburg
+      </p>
     </div>
   </footer>
 </template>

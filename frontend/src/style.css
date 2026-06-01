@@ -44,6 +44,12 @@
     --shadow-medium: 0 4px 20px rgb(0 0 0 / 0.12);
     --shadow-strong: 0 8px 30px rgb(0 0 0 / 0.16);
     --shadow-gold: 0 4px 20px rgb(212 163 115 / 0.3);
+    /* Hintergrund (→ bg-gradient-gold) */
+    --background-image-gradient-gold: linear-gradient(
+            135deg,
+            var(--color-gold-100),
+            var(--color-gold-400)
+    );
     /* Animationen */
     --animate-fade-in: fade-in 0.5s ease-in-out;
     --animate-slide-up: slide-up 0.6s ease-out;
@@ -135,15 +141,137 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
-.card {
-    padding: 2em;
+#app {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
 }
 
-#app {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+@layer components {
+    .container-custom {
+        width: 100%;
+        max-width: 80rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    @media (min-width: 640px) {
+        .container-custom {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    }
+
+    .section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    @media (min-width: 768px) {
+        .section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+    }
+
+    .scroll-mt-nav {
+        scroll-margin-top: 5rem;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        transition: background-color 0.2s, color 0.2s, box-shadow 0.2s,
+        transform 0.2s;
+    }
+
+    .btn-primary {
+        background-color: var(--color-gold-400);
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--color-gold-500);
+    }
+
+    .btn-lg {
+        padding: 0.875rem 1.75rem;
+        font-size: 1.125rem;
+    }
+
+    /* Services-Slider */
+    .services-slider {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .services-slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .services-slide {
+        flex: 0 0 88%;
+        max-width: 88%;
+    }
+
+    @media (min-width: 640px) {
+        .services-slide {
+            flex: 0 0 calc(50% - 0.75rem);
+            max-width: calc(50% - 0.75rem);
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .services-slide {
+            flex: 0 0 calc(25% - 1.125rem);
+            max-width: calc(25% - 1.125rem);
+        }
+    }
+
+    .services-nav-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 9999px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .services-nav-btn:hover:not(:disabled) {
+        transform: scale(1.05);
+    }
+
+    .services-nav-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+
+    .services-nav-btn--prev {
+        background-color: #e8a4b8;
+    }
+
+    .services-nav-btn--prev:hover:not(:disabled) {
+        background-color: #df8fa8;
+    }
+
+    .services-nav-btn--next {
+        background-color: var(--color-sand-800);
+    }
+
+    .services-nav-btn--next:hover:not(:disabled) {
+        background-color: var(--color-sand-900);
+    }
 }
 
 /* Navbar: eigene Styles, damit globale a/button nicht das Menü überschreiben */
