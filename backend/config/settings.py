@@ -37,6 +37,7 @@ INSTALLED_APPS = (
 
 LOCAL_APPS = ("accounts", "shop", "website")
 THIRD_PARTY_APPS = (
+    "unfold",
     "unfold.contrib.filters",  # optional, if special filters are needed
     "unfold.contrib.forms",  # optional, if special form elements are needed
     "unfold.contrib.inlines",  # optional, if special inlines are needed

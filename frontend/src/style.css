@@ -1,79 +1,199 @@
+@import "tailwindcss";
+
+/* Damit Tailwind alle Vue/TS/HTML-Dateien scannt (z. B. Navbar) */
+@source "../index.html";
+@source "./**/*.vue";
+@source "./**/*.ts";
+
+/* Design Tokens für Schönheitsecke (Tailwind v4: nur @theme wird genutzt) */
+@theme {
+    /* Gold (Primär) */
+    --color-gold-50: #faf7f2;
+    --color-gold-100: #f5ede0;
+    --color-gold-200: #ead9c0;
+    --color-gold-300: #dfc5a0;
+    --color-gold-400: #d4a373;
+    --color-gold-500: #c49363;
+    --color-gold-600: #b38353;
+    --color-gold-700: #8f6942;
+    --color-gold-800: #6b4f32;
+    --color-gold-900: #473521;
+    /* Sand (Sekundär) */
+    --color-sand-50: #fafaf9;
+    --color-sand-100: #f5f5f4;
+    --color-sand-200: #e7e5e4;
+    --color-sand-300: #d6d3d1;
+    --color-sand-400: #a8a29e;
+    --color-sand-500: #78716c;
+    --color-sand-600: #57534e;
+    --color-sand-700: #44403c;
+    --color-sand-800: #292524;
+    --color-sand-900: #1c1917;
+    /* Fonts */
+    --font-heading: "Montserrat", sans-serif;
+    /* Spacing (Zusatz) */
+    --spacing-18: 4.5rem;
+    --spacing-88: 22rem;
+    --spacing-128: 32rem;
+    /* Radius */
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-3xl: 2rem;
+    /* Shadows */
+    --shadow-soft: 0 2px 15px rgb(0 0 0 / 0.08);
+    --shadow-medium: 0 4px 20px rgb(0 0 0 / 0.12);
+    --shadow-strong: 0 8px 30px rgb(0 0 0 / 0.16);
+    --shadow-gold: 0 4px 20px rgb(212 163 115 / 0.3);
+    /* Animationen */
+    --animate-fade-in: fade-in 0.5s ease-in-out;
+    --animate-slide-up: slide-up 0.6s ease-out;
+    --animate-bounce-soft: bounce-soft 2s infinite;
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes slide-up {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    @keyframes bounce-soft {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+    color: #535bf2;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-size: 3.2em;
+    line-height: 1.1;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+    border-color: #8e690a;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    outline: 4px auto -webkit-focus-ring-color;
 }
 
 .card {
-  padding: 2em;
+    padding: 2em;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Navbar: eigene Styles, damit globale a/button nicht das Menü überschreiben */
+nav a {
+    color: var(--color-sand-700);
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: var(--color-gold-400);
+}
+
+nav .nav-mobile-panel {
+    background-color: var(--color-white, #fff);
+    border-top: 1px solid var(--color-sand-200);
+}
+
+nav .nav-mobile-panel a {
+    display: block;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav .nav-mobile-panel a:hover {
+    background-color: var(--color-sand-50);
+    color: var(--color-gold-400);
+}
+
+nav button[aria-label="Toggle Menu"] {
+    color: var(--color-sand-700);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+nav button[aria-label="Toggle Menu"]:hover {
+    background-color: var(--color-sand-100);
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+
+    a:hover {
+        color: #8e690a;
+    }
+
+    button {
+        background-color: #f9f9f9;
+    }
 }
