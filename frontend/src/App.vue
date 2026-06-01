@@ -2,6 +2,7 @@
 import Navbar from "./components/common/Navbar.vue";
 import Hero from "@/components/website/Hero.vue";
 import Footer from "@/components/common/Footer.vue";
+import About from "@/components/website/About.vue";
 </script>
 
 <template>
@@ -14,15 +15,7 @@ import Footer from "@/components/common/Footer.vue";
 
     <!-- About Section -->
     <section id="about" class="section scroll-mt-nav">
-      <div class="container-custom">
-        <h2 class="text-center mb-12">Über uns</h2>
-        <div class="max-w-3xl mx-auto text-center">
-          <p class="text-lg text-sand-600 leading-relaxed">
-            Seit über 10 Jahren Ihr Partner für Schönheit und Wohlbefinden in Oldenburg.
-            Wir verbinden professionelle Behandlungen mit entspannender Atmosphäre.
-          </p>
-        </div>
-      </div>
+      <About />
     </section>
 
     <!-- Services Section -->
