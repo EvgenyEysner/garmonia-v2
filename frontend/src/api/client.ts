@@ -70,18 +70,19 @@ export const websiteApi = {
     return apiClient.post("/contact/", data);
   },
 
-  // Call services
   getServices: () => {
     return apiClient.get("/services/");
   },
 
-  // Call team members
-  getTeamMembers: () => {
-    return apiClient.get("/team/");
+  getTreatments: () => {
+    return apiClient.get("/treatment/");
   },
 
-  // Call gallery images
   getGalleryImages: () => {
     return apiClient.get("/gallery/");
+  },
+
+  getTestimonials: () => {
+    return apiClient.get("/testimonial/");
   },
 };
