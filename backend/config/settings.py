@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     "django.contrib.postgres",
 )
 
-LOCAL_APPS = ("accounts", "shop", "app")
+LOCAL_APPS = ("accounts", "app")
 THIRD_PARTY_APPS = (
     "unfold",
     "unfold.contrib.filters",  # optional, if special filters are needed
@@ -64,24 +64,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
-# --- Debug toolbar
-USE_DEBUG_TOOLBAR = env.bool("DJANGO_USE_DEBUG_TOOLBAR")
-if USE_DEBUG_TOOLBAR:
-    MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
-    INSTALLED_APPS += ("debug_toolbar",)
-    DEBUG_TOOLBAR_CONFIG = {
-        "DISABLE_PANELS": [
-            "debug_toolbar.panels.redirects.RedirectsPanel",
-        ],
-        "SHOW_TEMPLATE_CONTEXT": True,
-        "SHOW_TOOLBAR_CALLBACK": lambda request: True,
-    }
-
-    DEBUG_TOOLBAR_PATCH_SETTINGS = False
-
-    # http://django-debug-toolbar.readthedocs.org/en/latest/installation.html
-    INTERNAL_IPS = ("127.0.0.1", "0.0.0.0", "10.0.2.2")
 
 ROOT_URLCONF = "config.urls"
 
@@ -116,7 +98,7 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -138,7 +120,7 @@ REST_FRAMEWORK = {
 }
 
 SPECTECULAR_SETTINGS = {
-    "TITLE": "Expomap API",
+    "TITLE": "Garmonia API",
     "DESCRIPTION": "Garmonia API Documentation",
     "VERSION": "0.0.0",
 }
