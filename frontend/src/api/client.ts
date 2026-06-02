@@ -56,9 +56,6 @@ apiClient.interceptors.response.use(
   }
 );
 
-/**
- * API-Methoden für die Website
- */
 export const websiteApi = {
   // Send contact form
   sendContactForm: (data: {
