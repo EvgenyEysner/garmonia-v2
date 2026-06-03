@@ -11,13 +11,16 @@ export interface NavItem {
   href: string;
 }
 
-// Service (Leistungen)
-export interface ServiceItem {
+// Service (Leistungen – Karten mit Bild-Header + Icon)
+export interface ServiceCardItem {
   id: string;
+  icon: import("vue").Component;
+  image: string;
+  imageAlt: string;
   title: string;
   description: string;
-  imageSrc: string;
-  imageAlt: string;
+  treatments: string[];
+  color: string;
 }
 
 // Footer

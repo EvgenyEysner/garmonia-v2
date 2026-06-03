@@ -1,232 +1,211 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
-import ServiceCard from "@/components/website/ServiceCard.vue";
-import type { ServiceItem } from "@/types";
+import type { ServiceCardItem } from "@/types";
+import { ArrowRight, Droplet, Eye, Footprints, Hand, Sparkles } from "@lucide/vue";
 
 import service1 from "@/assets/images/service-1.webp";
 import service2 from "@/assets/images/service-2.webp";
 import service3 from "@/assets/images/service-3.webp";
 import service4 from "@/assets/images/service-4.webp";
 import service5 from "@/assets/images/service-5.webp";
+import service6 from "@/assets/images/service-6.webp";
 
-const services: ServiceItem[] = [
+const services: ServiceCardItem[] = [
   {
     id: "cosmetic",
-    title: "Kosmetische Behandlungen",
-    description:
-      "Gesichtsbehandlungen gehören zu den gefragtesten Verfahren, da sie helfen können, Falten zu reduzieren und den Hautton zu verbessern.",
-    imageSrc: service1,
+    icon: Sparkles,
+    image: service1,
     imageAlt: "Kosmetische Gesichtsbehandlung im Studio",
+    title: "Kosmetische Behandlungen",
+    description: "Anti-Aging, Hydra Facial, Micro Needling, Peelings und mehr",
+    treatments: [
+      "Hydra Facial",
+      "BioRePeel",
+      "Micro Needling",
+      "Retinol Peel",
+      "Diamant Mikrodermabrasion",
+    ],
+    color: "from-gold-400 to-gold-600",
   },
   {
     id: "permanent-makeup",
-    title: "Permanent Make Up",
-    description:
-      "Permanent Make-up ist ein revolutionäres kosmetisches Verfahren, das Ihre natürliche Schönheit mit dauerhaften Ergebnissen verbessern kann.",
-    imageSrc: service2,
+    icon: Eye,
+    image: service2,
     imageAlt: "Permanent Make Up Behandlung",
+    title: "Permanent Make-Up",
+    description: "Augenbrauen, Lippen und Eyeliner - natürlich schön",
+    treatments: ["Augenbrauen", "Lippen", "Eyeliner", "Nachbehandlung"],
+    color: "from-gold-300 to-gold-500",
   },
   {
     id: "hair-removal",
-    title: "Körperenthaarung",
-    description:
-      "Die Körperenthaarung kann schnell und effizient mit minimalen Beschwerden durchgeführt werden. Dabei stehen verschiedene Methoden zur Verfügung.",
-    imageSrc: service3,
+    icon: Sparkles,
+    image: service3,
     imageAlt: "Professionelle Körperenthaarung",
+    title: "Körperenthaarung",
+    description: "Schonende Haarentfernung für alle Körperbereiche",
+    treatments: ["Gesicht", "Beine", "Arme", "Achseln", "Bikinizone"],
+    color: "from-gold-500 to-gold-700",
   },
   {
     id: "foot-care",
-    title: "Fußpflege",
-    description:
-      "Pediküre ist eine großartige Möglichkeit, Ihre Füße zu verwöhnen, damit sie gesund aussehen und sich so anfühlen. Mit regelmäßiger Pediküre halten Sie Ihre Füße in Topform!",
-    imageSrc: service4,
+    icon: Footprints,
+    image: service4,
     imageAlt: "Professionelle Fußpflege und Pediküre",
+    title: "Fußpflege",
+    description: "Medizinische und kosmetische Fußpflege",
+    treatments: [
+      "Pediküre",
+      "Express Pediküre",
+      "Hühneraugen-Entfernung",
+      "Nagelkorrektur",
+    ],
+    color: "from-gold-400 to-gold-600",
   },
   {
     id: "nail-design",
-    title: "Nageldesign",
-    description:
-      "Sie wünschen längere Nägel, ist die Modellage die beste Lösung. Die vorhandene Länge ist dabei unentscheidend. Eine Verlängerung ist bei jedem möglich.",
-    imageSrc: service5,
+    icon: Hand,
+    image: service5,
     imageAlt: "Kreatives Nageldesign und Modellage",
+    title: "Nageldesign",
+    description: "Professionelle Maniküre und Nagelmodellage",
+    treatments: [
+      "Gel-Modellage",
+      "Nagelverlängerung",
+      "French Design",
+      "Babyboomer",
+      "Express-Maniküre",
+    ],
+    color: "from-gold-500 to-gold-700",
+  },
+  {
+    id: "lashes",
+    icon: Droplet,
+    image: service6,
+    imageAlt: "Wimpernlifting und Augenbrauen-Styling",
+    title: "Wimpern & Augen",
+    description: "Wimpernlifting, Färben und Augenbrauen-Styling",
+    treatments: [
+      "Wimpernlifting",
+      "Wimpern färben",
+      "Augenbrauen färben",
+      "Augenbrauen zupfen",
+    ],
+    color: "from-gold-300 to-gold-500",
   },
 ];
 
-const trackRef = ref<HTMLElement | null>(null);
-const activeIndex = ref(0);
-
-function updateScrollState() {
-  const track = trackRef.value;
-  if (!track) return;
-
-  const slides = track.querySelectorAll<HTMLElement>("[data-slide]");
-  if (!slides.length) return;
-
-  const trackRect = track.getBoundingClientRect();
-  const trackCenter = trackRect.left + trackRect.width / 2;
-
-  let closest = 0;
-  let minDistance = Infinity;
-
-  slides.forEach((slide, index) => {
-    const slideRect = slide.getBoundingClientRect();
-    const slideCenter = slideRect.left + slideRect.width / 2;
-    const distance = Math.abs(slideCenter - trackCenter);
-    if (distance < minDistance) {
-      minDistance = distance;
-      closest = index;
-    }
-  });
-
-  activeIndex.value = closest;
-}
-
-function scrollToIndex(index: number) {
-  const track = trackRef.value;
-  if (!track) return;
-
-  const slides = track.querySelectorAll<HTMLElement>("[data-slide]");
-  const target = slides[index];
-  if (!target) return;
-
-  const offset = target.offsetLeft - track.clientWidth / 2 + target.offsetWidth / 2;
-
-  track.scrollTo({
-    left: Math.max(0, offset),
-    behavior: "smooth",
-  });
-}
-
-function goPrev() {
-  const nextIndex = activeIndex.value <= 0 ? services.length - 1 : activeIndex.value - 1;
-  scrollToIndex(nextIndex);
-}
-
-function goNext() {
-  const nextIndex = activeIndex.value >= services.length - 1 ? 0 : activeIndex.value + 1;
-  scrollToIndex(nextIndex);
-}
-
-let resizeObserver: ResizeObserver | undefined;
-
-onMounted(() => {
-  const track = trackRef.value;
-  if (!track) return;
-
-  track.addEventListener("scroll", updateScrollState, { passive: true });
-  resizeObserver = new ResizeObserver(updateScrollState);
-  resizeObserver.observe(track);
-  updateScrollState();
-});
-
-onUnmounted(() => {
-  const track = trackRef.value;
-  if (track) {
-    track.removeEventListener("scroll", updateScrollState);
-  }
-  resizeObserver?.disconnect();
-});
+const scrollToContact = () => {
+  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+};
 </script>
 
 <template>
   <section
     id="services"
-    class="section section-alt scroll-mt-nav overflow-hidden"
+    class="py-24 bg-gradient-to-b from-sand-50 to-white scroll-mt-nav"
     aria-labelledby="services-heading"
   >
-    <div class="container-custom">
-      <header class="text-center mb-10 md:mb-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="inline-block">
+          <span class="text-gold-500 font-semibold text-sm uppercase tracking-wider">
+            Unsere Leistungen
+          </span>
+          <div class="h-1 w-16 bg-gold-400 mt-2 rounded-full mx-auto" />
+        </div>
+
         <h2
           id="services-heading"
-          class="inline-flex items-center justify-center gap-3 text-3xl md:text-4xl font-bold text-gold-600 font-heading"
+          class="text-4xl md:text-5xl font-bold text-sand-900 mt-4 mb-6"
         >
-          Unsere Leistungen
-          <span class="text-gold-400" aria-hidden="true">
-            <svg
-              class="w-7 h-7 md:w-8 md:h-8"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1.23-2.27c.48.17.98.27 1.51.27 3.31 0 6-2.69 6-6 0-.53-.1-1.03-.27-1.51L13 19.29l.66-1.89C18.83 15.1 22 8 22 8s-3-1-5-0zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
-              />
-            </svg>
-          </span>
+          Professionelle <span class="text-gold-500">Beauty-Behandlungen</span>
         </h2>
-        <div class="mt-4 mx-auto w-24 h-1 rounded-full bg-gold-400" />
-      </header>
 
-      <!-- Slider -->
-      <div class="relative pt-16 pb-4">
-        <div
-          ref="trackRef"
-          class="services-slider flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 -mx-4 px-4 sm:mx-0 sm:px-0"
-          role="region"
-          aria-roledescription="Karussell"
-          aria-label="Unsere Leistungen"
-        >
-          <div
-            v-for="(service, index) in services"
-            :key="service.id"
-            data-slide
-            class="services-slide snap-center shrink-0"
-            :aria-label="`${index + 1} von ${services.length}: ${service.title}`"
-          >
-            <ServiceCard
-              :title="service.title"
-              :description="service.description"
-              :image-src="service.imageSrc"
-              :image-alt="service.imageAlt"
-            />
-          </div>
-        </div>
+        <p class="text-lg text-sand-600 max-w-2xl mx-auto">
+          Von Anti-Aging über Permanent Make-Up bis zur medizinischen Fußpflege –
+          entdecken Sie unser umfassendes Behandlungsangebot.
+        </p>
       </div>
 
-      <!-- Navigation (wie altes Design: rosa + dunkel) -->
-      <div class="flex items-center justify-center gap-5 mt-6">
-        <button
-          type="button"
-          class="services-nav-btn services-nav-btn--prev"
-          aria-label="Vorherige Leistung"
-          @click="goPrev"
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article
+          v-for="service in services"
+          :key="service.id"
+          class="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-sand-100 hover:border-gold-200"
         >
-          <svg
-            class="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            aria-hidden="true"
+          <!-- Bild-Header + Icon-Badge -->
+          <div class="relative h-48 sm:h-52 overflow-visible shrink-0">
+            <div class="absolute inset-0 overflow-hidden">
+              <img
+                :src="service.image"
+                :alt="service.imageAlt"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-sand-900/30 to-transparent"
+              />
+            </div>
+            <div
+              :class="[
+                'absolute -bottom-8 left-8 w-16 h-16 bg-gradient-to-br rounded-2xl flex items-center justify-center shadow-lg ring-4 ring-white group-hover:scale-110 transition-transform duration-300',
+                service.color,
+              ]"
+            >
+              <component :is="service.icon" class="w-8 h-8 text-white shrink-0" aria-hidden="true" />
+            </div>
+          </div>
+
+          <div class="flex flex-col flex-1 p-8 pt-12">
+            <h3 class="text-2xl font-bold text-sand-900 mb-3">{{ service.title }}</h3>
+            <p class="text-sand-600 mb-6">{{ service.description }}</p>
+
+            <div class="space-y-2 mb-6 flex-1">
+              <div
+                v-for="(treatment, idx) in service.treatments"
+                :key="`${service.id}-treatment-${idx}`"
+                class="flex items-center gap-2 text-sm text-sand-600"
+              >
+                <div class="w-1.5 h-1.5 bg-gold-400 rounded-full shrink-0" />
+                <span>{{ treatment }}</span>
+              </div>
+            </div>
+
+            <a
+              href="#contact"
+              class="inline-flex items-center gap-2 text-gold-600 font-semibold hover:gap-3 transition-all duration-200 mt-auto"
+              @click.prevent="scrollToContact"
+            >
+              <span>Termin buchen</span>
+              <ArrowRight class="w-4 h-4 shrink-0" aria-hidden="true" />
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div
+        class="mt-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-xl"
+      >
+        <div class="max-w-3xl mx-auto">
+          <Sparkles class="w-12 h-12 mx-auto mb-4" aria-hidden="true" />
+          <h3 class="text-3xl font-bold mb-4">Monatsangebot im Juni</h3>
+          <p class="text-xl mb-2">Bioenzyme Therapie</p>
+          <div class="flex items-center justify-center gap-4 mb-6">
+            <span class="text-2xl line-through opacity-75">95€</span>
+            <span class="text-4xl font-bold">85€</span>
+          </div>
+          <p class="text-lg opacity-90 mb-6">
+            Erleben Sie unsere intensive Anti-Aging Behandlung zum Sonderpreis
+          </p>
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center gap-2 bg-white text-gold-600 px-8 py-4 rounded-xl font-semibold hover:bg-sand-50 transition-colors duration-200"
+            @click.prevent="scrollToContact"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2.5"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <button
-          type="button"
-          class="services-nav-btn services-nav-btn--next"
-          aria-label="Nächste Leistung"
-          @click="goNext"
-        >
-          <svg
-            class="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2.5"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+            <span>Jetzt Termin sichern</span>
+            <ArrowRight class="w-5 h-5 shrink-0" aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </div>
   </section>
