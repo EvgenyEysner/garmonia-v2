@@ -1,10 +1,30 @@
 <script setup lang="ts">
-import type { FooterLink, SocialLink } from "@/types";
+import type { FooterLink, NavItem, SocialLink } from "@/types";
+import { Mail, MapPin, Phone, Sparkles } from "@lucide/vue";
 
 const currentYear = new Date().getFullYear();
+
+const contact = {
+  addressLine1: "Bahnhofsplatz 2a, 2. OG",
+  addressLine2: "26122 Oldenburg",
+  phone: "+49 179 7716648",
+  phoneHref: "tel:+491797716648",
+  email: "garmonia.eisner@gmail.com",
+  vatId: "DE320418012",
+};
+
+const quickLinks: NavItem[] = [
+  { label: "Home", href: "#home" },
+  { label: "Über uns", href: "#about" },
+  { label: "Leistungen", href: "#services" },
+  { label: "Galerie", href: "#gallery" },
+  { label: "Preise", href: "#pricing" },
+  { label: "Kontakt", href: "#contact" },
+];
+
 const socialLinks: SocialLink[] = [
-  { name: "Instagram", url: "https://www.instagram.com/olga.eisner/", icon: "" },
-  { name: "Facebook", url: "https://www.facebook.com/evgeny.eisner/", icon: "" },
+  { name: "Instagram", url: "https://www.instagram.com/olga.eisner/", icon: "instagram" },
+  { name: "Facebook", url: "https://www.facebook.com/evgeny.eisner/", icon: "facebook" },
 ];
 
 const footerLinks: FooterLink[] = [
@@ -13,64 +33,124 @@ const footerLinks: FooterLink[] = [
   { label: "AGB", href: "/agb" },
 ];
 </script>
+
 <template>
-  <footer class="bg-sand-800 text-sand-100">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Kontakt Info -->
-        <div>
-          <h3 class="text-xl font-bold text-gold-400 mb-4">Schönheitsecke Oldenburg</h3>
-          <div class="space-y-2 text-sand-300">
-            <p>Bahnhofsplatz 2a</p>
-            <p>26122 Oldenburg</p>
-            <p class="mt-4">
-              <a href="tel:+491797716648" class="hover:text-gold-400 transition-colors">
-                +49 123 456 7890
-              </a>
-            </p>
-            <p>
-              ✉️
-              <a
-                href="mailto:garmonia.eisner@gmail.com"
-                class="hover:text-gold-400 transition-colors"
+  <footer class="bg-sand-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid md:grid-cols-4 gap-12">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-4">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center"
+            >
+              <Sparkles class="w-5 h-5 text-white" aria-hidden="true" />
+            </div>
+            <span class="text-xl font-semibold">Schönheitsecke Oldenburg</span>
+          </div>
+          <p class="text-sand-300 mb-6 max-w-md">
+            Ihr exklusives Kosmetikstudio im Herzen von Oldenburg. Professionelle
+            Beauty-Behandlungen mit über 10 Jahren Erfahrung.
+          </p>
+          <div class="flex gap-4">
+            <a
+              v-for="link in socialLinks"
+              :key="link.name"
+              :href="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="link.name"
+              class="w-10 h-10 bg-sand-800 rounded-lg flex items-center justify-center hover:bg-gold-500 transition-colors"
+            >
+              <svg
+                v-if="link.icon === 'instagram'"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
               >
-                garmonia.eisner@gmail.com
-              </a>
-            </p>
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+              <svg
+                v-else-if="link.icon === 'facebook'"
+                class="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
           </div>
         </div>
 
         <div>
-          <h3 class="text-xl font-bold text-gold-400 mb-4">Folgen Sie uns</h3>
-          <ul class="space-y-2">
-            <li v-for="link in socialLinks" :key="link.name">
+          <h3 class="font-semibold text-lg mb-4">Schnellzugriff</h3>
+          <ul class="space-y-3">
+            <li v-for="link in quickLinks" :key="link.href">
               <a
-                :href="link.url"
-                target="_blank"
-                rel="noopener noreferrer"
+                :href="link.href"
                 class="text-sand-300 hover:text-gold-400 transition-colors"
               >
-                {{ link.name }}
+                {{ link.label }}
               </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <h3 class="text-xl font-bold text-gold-400 mb-4">Rechtliches</h3>
-          <ul class="space-y-2">
-            <li v-for="link in footerLinks" :key="link.href">
-              <a :href="link.href" class="text-sand-300 hover:text-gold-400 transition-colors">
-                {{ link.label }}
+          <h3 class="font-semibold text-lg mb-4">Kontakt</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2">
+              <MapPin class="w-5 h-5 text-gold-400 shrink-0 mt-0.5" aria-hidden="true" />
+              <div>
+                <p class="text-sand-300">{{ contact.addressLine1 }}</p>
+                <p class="text-sand-300">{{ contact.addressLine2 }}</p>
+              </div>
+            </li>
+            <li class="flex items-center gap-2">
+              <Phone class="w-5 h-5 text-gold-400 shrink-0" aria-hidden="true" />
+              <a
+                :href="contact.phoneHref"
+                class="text-sand-300 hover:text-gold-400 transition-colors"
+              >
+                {{ contact.phone }}
+              </a>
+            </li>
+            <li class="flex items-center gap-2">
+              <Mail class="w-5 h-5 text-gold-400 shrink-0" aria-hidden="true" />
+              <a
+                :href="`mailto:${contact.email}`"
+                class="text-sand-300 hover:text-gold-400 transition-colors"
+              >
+                {{ contact.email }}
               </a>
             </li>
           </ul>
         </div>
       </div>
 
-      <p class="mt-10 pt-6 border-t border-sand-700 text-center text-sand-400 text-sm">
-        © {{ currentYear }} Schönheitsecke Oldenburg
-      </p>
+      <div class="border-t border-sand-800 mt-12 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-sand-400 text-sm">
+            © {{ currentYear }} Schönheitsecke Oldenburg. Alle Rechte vorbehalten.
+          </p>
+          <div class="flex gap-6 text-sm">
+            <a
+              v-for="link in footerLinks"
+              :key="link.href"
+              :href="link.href"
+              class="text-sand-400 hover:text-gold-400 transition-colors"
+            >
+              {{ link.label }}
+            </a>
+          </div>
+          <p class="text-sand-400 text-sm">USt-IdNr.: {{ contact.vatId }}</p>
+        </div>
+      </div>
     </div>
   </footer>
 </template>
