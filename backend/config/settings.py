@@ -117,6 +117,9 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": [
         "rest_framework.throttling.ScopedRateThrottle",
     ],
+    "DEFAULT_THROTTLE_RATES": {
+        "contact": "5/hour",  # Spam protection for contact form submissions
+    },
 }
 
 SPECTECULAR_SETTINGS = {
@@ -184,7 +187,6 @@ CORS_ALLOWED_ORIGINS = (
     "http://127.0.0.1:5173",
 )
 
-# Internationalization
 LANGUAGE_CODE = "de-de"
 TIME_ZONE = "Europe/Berlin"
 USE_I18N = True
@@ -195,8 +197,13 @@ STATIC_URL = "/static/"
 STATIC_ROOT = env("DJANGO_STATIC_ROOT")
 STATICFILES_DIRS = ("static/",)
 
-# Media files (User uploads)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# --- E-Mail (Resend) ----------------------------------- #
+RESEND_API_KEY = env("RESEND_API_KEY", default="")
+RESEND_FROM_EMAIL = env("RESEND_FROM_EMAIL", default="")
+RECIPIENT_ADDRESS = env("RECIPIENT_ADDRESS", default="garmonia.eisner@gmail.com")
+RESEND_TIMEOUT = env.int("RESEND_TIMEOUT", default=15)

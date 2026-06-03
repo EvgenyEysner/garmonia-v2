@@ -1,7 +1,8 @@
 import random
 
-from rest_framework import viewsets, mixins, permissions
+from rest_framework import mixins, permissions, status, viewsets
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from app.models import GalleryImage, Category, Treatment, MonthlyOffer, Testimonial
 from app.serializers import (
@@ -10,7 +11,9 @@ from app.serializers import (
     TreatmentSerializer,
     MonthlyOfferSerializer,
     TestimonialSerializer,
+    EmailSerializer,
 )
+from app.services.email import ResendError, send_contact_email
 
 
 class GalleryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -65,3 +68,30 @@ class TestimonialViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     def list(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.queryset, many=True)
         return Response(serializer.data)
+
+
+class ContactView(APIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = EmailSerializer
+
+    def post(self, request):
+        serializer = EmailSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        try:
+            send_contact_email(serializer.validated_data)
+        except Treatment.DoesNotExist:
+            return Response(
+                {"treatment_id": ["Ungültige Behandlung."]},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        except ResendError:
+            return Response(
+                {"message": "E-Mail konnte nicht gesendet werden."},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE,
+            )
+
+        return Response(
+            {"message": "Ihre Anfrage wurde gesendet."},
+            status=status.HTTP_201_CREATED,
+        )

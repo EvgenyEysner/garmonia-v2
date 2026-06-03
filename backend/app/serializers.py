@@ -35,3 +35,16 @@ class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Testimonial
         fields = ["id", "full_name", "text"]
+
+
+class EmailSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=120)
+    email = serializers.EmailField()
+    phone = serializers.CharField(max_length=30)
+    treatment_id = serializers.IntegerField()
+    message = serializers.CharField(required=False, allow_blank=True, max_length=2000)
+
+    def validate_treatment_id(self, value):
+        if not Treatment.objects.filter(pk=value).exists():
+            raise serializers.ValidationError("Behandlung existiert nicht.")
+        return value

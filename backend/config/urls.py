@@ -8,12 +8,14 @@ from drf_spectacular.views import (
 from rest_framework import routers
 
 from app.routers import router as api_router
+from app.views import ContactView
 
 router = routers.DefaultRouter()
 router.registry.extend(api_router.registry)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/contact/", ContactView.as_view(), name="contact"),
     path("api/", include(router.urls)),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
