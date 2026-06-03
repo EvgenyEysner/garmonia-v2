@@ -1,5 +1,10 @@
 import axios, { type AxiosError, type AxiosInstance } from "axios";
-import type { ApiErrorResponse, TestimonialItem, TreatmentItem } from "@/types";
+import type {
+  ApiErrorResponse,
+  ContactFormPayload,
+  TestimonialItem,
+  TreatmentItem,
+} from "@/types";
 import { getCookie } from "@/utils";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -57,13 +62,7 @@ apiClient.interceptors.response.use(
 );
 
 export const websiteApi = {
-  // Send contact form
-  sendContactForm: (data: {
-    name: string;
-    email: string;
-    phone?: string;
-    message: string;
-  }) => {
+  sendContactForm: (data: ContactFormPayload) => {
     return apiClient.post("/contact/", data);
   },
 

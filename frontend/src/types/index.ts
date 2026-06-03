@@ -59,3 +59,11 @@ export interface TestimonialItem {
   full_name: string;
   text: string;
 }
+
+export interface ContactFormPayload {
+  name: string;
+  email: string;
+  phone: string;
+  treatment_id: number;
+  message?: string;
+}
