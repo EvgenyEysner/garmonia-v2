@@ -4,6 +4,7 @@ import Hero from "@/components/website/Hero.vue";
 import Footer from "@/components/common/Footer.vue";
 import About from "@/components/website/About.vue";
 import Services from "@/components/website/Services.vue";
+import Favorite from "@/components/website/Favorite.vue";
 </script>
 
 <template>
@@ -20,6 +21,9 @@ import Services from "@/components/website/Services.vue";
     <!-- Services Section -->
     <Services />
     <!-- <Services /> -->
+    <!-- Favorite Section -->
+    <Favorite />
+    <!-- <Favorite /> -->
     <!-- Gallery Section -->
     <section id="gallery" class="section scroll-mt-nav">
       <div class="container-custom">
