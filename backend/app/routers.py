@@ -1,6 +1,12 @@
 from rest_framework.routers import DefaultRouter
 
-from app.views import GalleryViewSet, CategoryViewSet, TestimonialViewSet, TreatmentViewSet, MonthlyOfferViewSet
+from app.views import (
+    GalleryViewSet,
+    CategoryViewSet,
+    TestimonialViewSet,
+    TreatmentViewSet,
+    MonthlyOfferViewSet,
+)
 
 router = DefaultRouter()
 

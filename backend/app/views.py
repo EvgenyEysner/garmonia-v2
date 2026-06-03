@@ -4,8 +4,13 @@ from rest_framework import viewsets, mixins, permissions
 from rest_framework.response import Response
 
 from app.models import GalleryImage, Category, Treatment, MonthlyOffer, Testimonial
-from app.serializers import GallerySerializer, CategorySerializer, TreatmentSerializer, MonthlyOfferSerializer, \
-    TestimonialSerializer
+from app.serializers import (
+    GallerySerializer,
+    CategorySerializer,
+    TreatmentSerializer,
+    MonthlyOfferSerializer,
+    TestimonialSerializer,
+)
 
 
 class GalleryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):

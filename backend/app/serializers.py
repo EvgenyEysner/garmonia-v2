@@ -17,7 +17,6 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class TreatmentSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
-    name = serializers.CharField(source="get_treatment_name", read_only=True)
 
     class Meta:
         model = Treatment
