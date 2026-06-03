@@ -5,6 +5,7 @@ import Footer from "@/components/common/Footer.vue";
 import About from "@/components/website/About.vue";
 import Services from "@/components/website/Services.vue";
 import Favorite from "@/components/website/Favorite.vue";
+import Gallery from "@/components/website/Gallery.vue";
 </script>
 
 <template>
@@ -25,12 +26,8 @@ import Favorite from "@/components/website/Favorite.vue";
     <Favorite />
     <!-- <Favorite /> -->
     <!-- Gallery Section -->
-    <section id="gallery" class="section scroll-mt-nav">
-      <div class="container-custom">
-        <h2 class="text-center mb-12">Galerie</h2>
-        <p class="text-center text-sand-600">Galerie-Komponente folgt...</p>
-      </div>
-    </section>
+    <Gallery />
+    <!-- <Gallery /> -->
 
     <!-- Pricing Section -->
     <section id="pricing" class="section section-alt scroll-mt-nav">
