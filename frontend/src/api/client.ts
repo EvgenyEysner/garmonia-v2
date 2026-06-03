@@ -1,5 +1,5 @@
 import axios, { type AxiosError, type AxiosInstance } from "axios";
-import type { ApiErrorResponse } from "@/types";
+import type { ApiErrorResponse, TreatmentItem } from "@/types";
 import { getCookie } from "@/utils";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -72,7 +72,7 @@ export const websiteApi = {
   },
 
   getTreatments: () => {
-    return apiClient.get("/treatment/");
+    return apiClient.get<TreatmentItem[]>("/treatment/");
   },
 
   getGalleryImages: () => {

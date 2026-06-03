@@ -34,3 +34,22 @@ export interface FooterLink {
   label: string;
   href: string;
 }
+
+// API: Kategorien & Behandlungen (Preisliste)
+export interface CategoryItem {
+  id: number;
+  name: string;
+}
+
+export interface TreatmentItem {
+  id: number;
+  name: string;
+  category: CategoryItem;
+  description: string | null;
+  price: string | null;
+}
+
+export interface PriceCategoryGroup {
+  category: string;
+  services: { id: number; name: string; price: string }[];
+}

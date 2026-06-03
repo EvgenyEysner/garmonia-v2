@@ -6,6 +6,8 @@ import About from "@/components/website/About.vue";
 import Services from "@/components/website/Services.vue";
 import Favorite from "@/components/website/Favorite.vue";
 import Gallery from "@/components/website/Gallery.vue";
+import PriceList from "@/components/website/PriceList.vue";
+import Brands from "@/components/website/Brands.vue";
 </script>
 
 <template>
@@ -30,20 +32,11 @@ import Gallery from "@/components/website/Gallery.vue";
     <!-- <Gallery /> -->
 
     <!-- Pricing Section -->
-    <section id="pricing" class="section section-alt scroll-mt-nav">
-      <div class="container-custom">
-        <h2 class="text-center mb-12">Preise</h2>
-        <p class="text-center text-sand-600">Preis-Tabelle folgt...</p>
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="section scroll-mt-nav">
-      <div class="container-custom">
-        <h2 class="text-center mb-12">Unser Team</h2>
-        <p class="text-center text-sand-600">Team-Komponente folgt...</p>
-      </div>
-    </section>
+    <PriceList />
+    <!-- <PriceList /> -->
+    <!-- Brands Section -->
+    <Brands />
+    <!-- <Brands /> -->
 
     <!-- Contact Section -->
     <section id="contact" class="section section-alt scroll-mt-nav">

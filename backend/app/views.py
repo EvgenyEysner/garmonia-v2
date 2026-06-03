@@ -33,7 +33,7 @@ class CategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 
 class TreatmentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = Treatment.objects.all()
+    queryset = Treatment.objects.select_related("category").all()
     serializer_class = TreatmentSerializer
     permission_classes = [permissions.AllowAny]
 
