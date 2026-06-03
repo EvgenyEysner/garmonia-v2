@@ -67,3 +67,9 @@ export interface ContactFormPayload {
   treatment_id: number;
   message?: string;
 }
+
+export interface GalleryItem {
+  id: number;
+  image: string;
+  description: string;
+}

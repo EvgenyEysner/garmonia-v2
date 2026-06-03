@@ -2,6 +2,7 @@ import axios, { type AxiosError, type AxiosInstance } from "axios";
 import type {
   ApiErrorResponse,
   ContactFormPayload,
+  GalleryItem,
   TestimonialItem,
   TreatmentItem,
 } from "@/types";
@@ -75,7 +76,7 @@ export const websiteApi = {
   },
 
   getGalleryImages: () => {
-    return apiClient.get("/gallery/");
+    return apiClient.get<GalleryItem[]>("/gallery/");
   },
 
   getTestimonials: () => {
