@@ -8,6 +8,7 @@ import Favorite from "@/components/website/Favorite.vue";
 import Gallery from "@/components/website/Gallery.vue";
 import PriceList from "@/components/website/PriceList.vue";
 import Brands from "@/components/website/Brands.vue";
+import Testimonials from "@/components/website/Testimonials.vue";
 </script>
 
 <template>
@@ -37,6 +38,9 @@ import Brands from "@/components/website/Brands.vue";
     <!-- Brands Section -->
     <Brands />
     <!-- <Brands /> -->
+
+    <!-- Testimonials Section -->
+    <Testimonials />
 
     <!-- Contact Section -->
     <section id="contact" class="section section-alt scroll-mt-nav">

@@ -53,3 +53,9 @@ export interface PriceCategoryGroup {
   category: string;
   services: { id: number; name: string; price: string }[];
 }
+
+export interface TestimonialItem {
+  id: number;
+  full_name: string;
+  text: string;
+}
