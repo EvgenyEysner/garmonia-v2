@@ -22,9 +22,9 @@ class GalleryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     permission_classes = [permissions.AllowAny]
 
     def list(self, request, *args, **kwargs):
-        count = self.queryset.count()
+        count = self.get_queryset().count()
 
-        qs = list(self.queryset)
+        qs = list(self.get_queryset())
         images = random.sample(qs, min(10, count)) if count else []
         serializer = self.get_serializer(images, many=True)
         return Response(serializer.data)
