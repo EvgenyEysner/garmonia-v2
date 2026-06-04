@@ -1,30 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { NavItem } from "@/types";
 import { Menu, Phone, X } from "@lucide/vue";
+import { navItems } from "@/content";
 
 const isMobileMenuOpen = ref(false);
 
-const navItems: NavItem[] = [
-  { label: "Home", href: "#home" },
-  { label: "Über uns", href: "#about" },
-  { label: "Leistungen", href: "#services" },
-  { label: "Galerie", href: "#gallery" },
-  { label: "Preise", href: "#pricing" },
-  { label: "Team", href: "#team" },
-  { label: "Kontakt", href: "#contact" },
-];
-
-/**
- * Toggle Mobile Menu
- */
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
-/**
- * Smooth Scroll to Section
- */
 const scrollToSection = (href: string) => {
   const element = document.querySelector(href);
   if (element) {
