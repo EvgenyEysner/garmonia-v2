@@ -34,7 +34,7 @@ class MonthlyOfferSerializer(serializers.ModelSerializer):
 class TestimonialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Testimonial
-        fields = ["id", "full_name", "text"]
+        fields = ["id", "first_name", "last_name", "full_name", "text"]
 
 
 class EmailSerializer(serializers.Serializer):

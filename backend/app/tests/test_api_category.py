@@ -41,6 +41,5 @@ class CategoryListEmptyAPITest(APITestCase):
         Category.objects.all().delete()
 
         response = self.client.get(self.url)
-        print("Response data:", response.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 0)
