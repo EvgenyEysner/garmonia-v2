@@ -25,7 +25,7 @@ class GalleryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         count = self.get_queryset().count()
 
         qs = list(self.get_queryset())
-        images = random.sample(qs, min(10, count)) if count else []
+        images = random.sample(qs, min(9, count)) if count else []
         serializer = self.get_serializer(images, many=True)
         return Response(serializer.data)
 
@@ -51,7 +51,7 @@ class TreatmentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 
 class MonthlyOfferViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = MonthlyOffer.objects.all()
+    queryset = MonthlyOffer.objects.select_related("treatment").all()
     serializer_class = MonthlyOfferSerializer
     permission_classes = [permissions.AllowAny]
 
