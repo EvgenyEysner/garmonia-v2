@@ -27,10 +27,6 @@ function formatPrice(price: string | null | undefined): string {
   return Number.isInteger(value) ? `${value}€` : `${value.toFixed(2).replace(".", ",")}€`;
 }
 
-function scrollToContact() {
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-}
-
 async function loadMonthlyOffer() {
   isLoading.value = true;
   errorMessage.value = null;
@@ -87,7 +83,10 @@ onMounted(loadMonthlyOffer);
           <span>Monatsangebot · {{ monthLabel }}</span>
         </div>
 
-        <h3 id="monthly-offer-heading" class="relative text-3xl md:text-4xl font-bold leading-tight mb-3">
+        <h3
+          id="monthly-offer-heading"
+          class="relative text-3xl md:text-4xl font-bold leading-tight mb-3"
+        >
           {{ activeOffer.title }}
         </h3>
 

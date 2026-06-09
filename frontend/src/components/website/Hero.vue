@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { ArrowRight, Sparkles, Star } from "@lucide/vue";
 import heroImage from "@/assets/images/home-header.webp";
-
-const scrollToContact = () => {
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-};
+import { scrollToContact } from "@/utils.ts";
 
 const scrollToServices = () => {
   document.querySelector("#services")?.scrollIntoView({ behavior: "smooth" });
@@ -21,9 +18,7 @@ const scrollToServices = () => {
     />
 
     <div class="absolute inset-0 opacity-10">
-      <div
-        class="absolute top-20 left-10 w-72 h-72 bg-gold-400 rounded-full blur-3xl"
-      />
+      <div class="absolute top-20 left-10 w-72 h-72 bg-gold-400 rounded-full blur-3xl" />
       <div
         class="absolute bottom-20 right-10 w-96 h-96 bg-gold-300 rounded-full blur-3xl"
       />

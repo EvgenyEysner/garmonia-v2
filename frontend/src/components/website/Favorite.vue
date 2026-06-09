@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Clock, Star, TrendingUp } from "@lucide/vue";
+import { scrollToContact } from "@/utils.ts";
 
 const treatments = [
   {
@@ -47,10 +48,6 @@ const treatments = [
       "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHxiZWF1dHklMjB0cmVhdG1lbnQlMjBmYWNpYWwlMjBza2luY2FyZXxlbnwxfHx8fDE3ODA0NzUyMTl8MA&ixlib=rb-4.1.0&q=80&w=1080",
   },
 ];
-
-const scrollToContact = () => {
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-};
 </script>
 
 <template>
@@ -96,9 +93,7 @@ const scrollToContact = () => {
             <div
               class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-sand-900/80 to-transparent p-4"
             >
-              <span
-                class="text-xs text-white/90 bg-gold-500/90 px-2 py-1 rounded-full"
-              >
+              <span class="text-xs text-white/90 bg-gold-500/90 px-2 py-1 rounded-full">
                 {{ treatment.category }}
               </span>
             </div>

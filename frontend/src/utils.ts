@@ -21,3 +21,7 @@ export function resolveMediaUrl(path: string | null | undefined): string {
   );
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
+
+export const scrollToContact = () => {
+  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+};

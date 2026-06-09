@@ -3,17 +3,7 @@ import { computed, onMounted, reactive, ref } from "vue";
 import { CheckCircle, Clock, Mail, MapPin, Phone, Send } from "@lucide/vue";
 import { websiteApi } from "@/api/client";
 import type { ApiErrorResponse, PriceCategoryGroup, TreatmentItem } from "@/types";
-
-const contactInfo = {
-  addressLine1: "Bahnhofsplatz 2a, 2. OG",
-  addressLine2: "26122 Oldenburg",
-  phone: "+49 179 7716648",
-  phoneHref: "tel:+491797716648",
-  email: "garmonia.eisner@gmail.com",
-  emailHref: "mailto:garmonia.eisner@gmail.com",
-  hoursWeekdays: "Montag - Freitag: 10:00 - 18:00 Uhr",
-  hoursNote: "Termine nach Vereinbarung",
-};
+import { contact } from "@/content";
 
 const formData = reactive({
   name: "",
@@ -152,8 +142,8 @@ onMounted(loadTreatments);
                 </div>
                 <div>
                   <h4 class="font-semibold text-sand-900 mb-1">Adresse</h4>
-                  <p class="text-sand-600">{{ contactInfo.addressLine1 }}</p>
-                  <p class="text-sand-600">{{ contactInfo.addressLine2 }}</p>
+                  <p class="text-sand-600">{{ contact.addressLine1 }}</p>
+                  <p class="text-sand-600">{{ contact.addressLine2 }}</p>
                 </div>
               </div>
 
@@ -165,11 +155,8 @@ onMounted(loadTreatments);
                 </div>
                 <div>
                   <h4 class="font-semibold text-sand-900 mb-1">Telefon</h4>
-                  <a
-                    :href="contactInfo.phoneHref"
-                    class="text-gold-600 hover:text-gold-700"
-                  >
-                    {{ contactInfo.phone }}
+                  <a :href="contact.phoneHref" class="text-gold-600 hover:text-gold-700">
+                    {{ contact.phone }}
                   </a>
                 </div>
               </div>
@@ -182,11 +169,8 @@ onMounted(loadTreatments);
                 </div>
                 <div>
                   <h4 class="font-semibold text-sand-900 mb-1">E-Mail</h4>
-                  <a
-                    :href="contactInfo.emailHref"
-                    class="text-gold-600 hover:text-gold-700"
-                  >
-                    {{ contactInfo.email }}
+                  <a :href="contact.emailHref" class="text-gold-600 hover:text-gold-700">
+                    {{ contact.email }}
                   </a>
                 </div>
               </div>
@@ -199,8 +183,8 @@ onMounted(loadTreatments);
                 </div>
                 <div>
                   <h4 class="font-semibold text-sand-900 mb-1">Öffnungszeiten</h4>
-                  <p class="text-sand-600">{{ contactInfo.hoursWeekdays }}</p>
-                  <p class="text-sand-600">{{ contactInfo.hoursNote }}</p>
+                  <p class="text-sand-600">{{ contact.hoursWeekdays }}</p>
+                  <p class="text-sand-600">{{ contact.hoursNote }}</p>
                 </div>
               </div>
             </div>
@@ -230,8 +214,8 @@ onMounted(loadTreatments);
             <CheckCircle class="w-16 h-16 text-gold-500 mb-4" aria-hidden="true" />
             <h4 class="text-2xl font-bold text-sand-900 mb-2">Vielen Dank!</h4>
             <p class="text-sand-600">
-              Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns schnellstmöglich bei
-              Ihnen.
+              Ihre Nachricht wurde erfolgreich gesendet. Wir melden uns schnellstmöglich
+              bei Ihnen.
             </p>
           </div>
 
@@ -245,7 +229,10 @@ onMounted(loadTreatments);
             </div>
 
             <div>
-              <label for="contact-name" class="block text-sm font-semibold text-sand-900 mb-2">
+              <label
+                for="contact-name"
+                class="block text-sm font-semibold text-sand-900 mb-2"
+              >
                 Name *
               </label>
               <input
@@ -261,7 +248,10 @@ onMounted(loadTreatments);
             </div>
 
             <div>
-              <label for="contact-email" class="block text-sm font-semibold text-sand-900 mb-2">
+              <label
+                for="contact-email"
+                class="block text-sm font-semibold text-sand-900 mb-2"
+              >
                 E-Mail *
               </label>
               <input
@@ -277,7 +267,10 @@ onMounted(loadTreatments);
             </div>
 
             <div>
-              <label for="contact-phone" class="block text-sm font-semibold text-sand-900 mb-2">
+              <label
+                for="contact-phone"
+                class="block text-sm font-semibold text-sand-900 mb-2"
+              >
                 Telefon *
               </label>
               <input

@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from "vue";
 import { Check } from "@lucide/vue";
 import { websiteApi } from "@/api/client";
 import type { PriceCategoryGroup, TreatmentItem } from "@/types";
+import { scrollToContact } from "@/utils.ts";
 
 const treatments = ref<TreatmentItem[]>([]);
 const isLoading = ref(true);
@@ -49,10 +50,6 @@ async function loadTreatments() {
     isLoading.value = false;
   }
 }
-
-const scrollToContact = () => {
-  document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-};
 
 onMounted(loadTreatments);
 </script>
@@ -121,10 +118,7 @@ onMounted(loadTreatments);
               class="flex items-center justify-between gap-4"
             >
               <div class="flex items-start gap-2 flex-1 min-w-0">
-                <Check
-                  class="w-4 h-4 text-gold-500 shrink-0 mt-1"
-                  aria-hidden="true"
-                />
+                <Check class="w-4 h-4 text-gold-500 shrink-0 mt-1" aria-hidden="true" />
                 <span class="text-sand-700">{{ service.name }}</span>
               </div>
               <span class="font-bold text-gold-600 shrink-0">{{ service.price }}</span>
@@ -133,9 +127,7 @@ onMounted(loadTreatments);
         </div>
       </div>
 
-      <div
-        class="mt-12 text-center bg-gold-50 rounded-2xl p-8 border border-gold-200"
-      >
+      <div class="mt-12 text-center bg-gold-50 rounded-2xl p-8 border border-gold-200">
         <p class="text-sand-700 mb-4">
           <span class="font-semibold">Hinweis:</span> Alle Preise verstehen sich als
           Richtwerte. Der genaue Preis wird nach individueller Beratung festgelegt.

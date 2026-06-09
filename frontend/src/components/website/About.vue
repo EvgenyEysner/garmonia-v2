@@ -1,32 +1,5 @@
 <script setup lang="ts">
-import { Award, Heart, Sparkles, Users } from "@lucide/vue";
-
-const features = [
-  {
-    id: 1,
-    icon: Award,
-    title: "Staatl. geprüfte Kosmetikerin",
-    description: "Professionelle Ausbildung und kontinuierliche Weiterbildung",
-  },
-  {
-    id: 2,
-    icon: Heart,
-    title: "Individuelle Beratung",
-    description: "Persönliche Behandlungskonzepte für Ihre Bedürfnisse",
-  },
-  {
-    id: 3,
-    icon: Users,
-    title: "Erfahrung seit 2014",
-    description: "Über 10 Jahre Expertise in der Schönheitspflege",
-  },
-  {
-    id: 4,
-    icon: Sparkles,
-    title: "Premium Produkte",
-    description: "Hochwertige Markenprodukte für optimale Ergebnisse",
-  },
-];
+import { features } from "@/content";
 </script>
 <template>
   <section id="about" class="py-24 bg-white">
@@ -67,7 +40,6 @@ const features = [
               <h3 class="font-semibold text-sand-900">{{ feature.title }}</h3>
               <p class="text-sm text-sand-600">{{ feature.description }}</p>
             </div>
-            ))}
           </div>
         </div>
 

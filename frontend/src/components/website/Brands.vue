@@ -1,38 +1,6 @@
 <script setup lang="ts">
 import { Award } from "@lucide/vue";
-import marke1 from "@/assets/images/marken/marke_1.webp";
-import marke2 from "@/assets/images/marken/marke_2.webp";
-import marke3 from "@/assets/images/marken/marke_3.webp";
-import marke4 from "@/assets/images/marken/marke_4.webp";
-import marke5 from "@/assets/images/marken/marke_5.webp";
-
-const brands = [
-  {
-    name: "Dermalogica",
-    img: marke1,
-    description: "Premium Hautpflege",
-  },
-  {
-    name: "Environ",
-    img: marke2,
-    description: "Vitamin A Skincare",
-  },
-  {
-    name: "Dr. Grandel",
-    img: marke3,
-    description: "Professionelle Kosmetik",
-  },
-  {
-    name: "Jane Iredale",
-    img: marke4,
-    description: "Mineral Make-Up",
-  },
-  {
-    name: "Premium Partner",
-    img: marke5,
-    description: "Hochwertige Pflegeprodukte",
-  },
-];
+import { brands } from "@/content";
 </script>
 
 <template>

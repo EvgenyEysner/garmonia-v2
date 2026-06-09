@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import type { FooterLink, NavItem, SocialLink } from "@/types";
+import type { NavItem } from "@/types";
 import { Mail, MapPin, Phone, Sparkles } from "@lucide/vue";
+import { contact, footerLinks, socialLinks } from "@/content.ts";
 
 const currentYear = new Date().getFullYear();
-
-const contact = {
-  addressLine1: "Bahnhofsplatz 2a, 2. OG",
-  addressLine2: "26122 Oldenburg",
-  phone: "+49 179 7716648",
-  phoneHref: "tel:+491797716648",
-  email: "garmonia.eisner@gmail.com",
-  vatId: "DE320418012",
-};
 
 const quickLinks: NavItem[] = [
   { label: "Home", href: "#home" },
@@ -20,17 +12,6 @@ const quickLinks: NavItem[] = [
   { label: "Galerie", href: "#gallery" },
   { label: "Preise", href: "#pricing" },
   { label: "Kontakt", href: "#contact" },
-];
-
-const socialLinks: SocialLink[] = [
-  { name: "Instagram", url: "https://www.instagram.com/olga.eisner/", icon: "instagram" },
-  { name: "Facebook", url: "https://www.facebook.com/evgeny.eisner/", icon: "facebook" },
-];
-
-const footerLinks: FooterLink[] = [
-  { label: "Impressum", href: "/impressum" },
-  { label: "Datenschutz", href: "/datenschutz" },
-  { label: "AGB", href: "/agb" },
 ];
 </script>
 
@@ -148,7 +129,11 @@ const footerLinks: FooterLink[] = [
               {{ link.label }}
             </a>
           </div>
-          <p class="text-sand-400 text-sm">USt-IdNr.: {{ contact.vatId }}</p>
+          <a
+            href="https://softeis.dev"
+            class="text-sand-400 text-sm hover:text-gold-400 transition-colors"
+            >Created by softeis.dev</a
+          >
         </div>
       </div>
     </div>

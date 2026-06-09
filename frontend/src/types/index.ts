@@ -1,17 +1,17 @@
 // API Error Response (Django/DRF)
+import type { LucideIcon } from "@lucide/vue";
+
 export interface ApiErrorResponse {
   message: string;
   status: number;
   errors?: Record<string, string[]>;
 }
 
-// Navbar Item
 export interface NavItem {
   label: string;
   href: string;
 }
 
-// Service (Leistungen – Karten mit Bild-Header + Icon)
 export interface ServiceCardItem {
   id: string;
   icon: import("vue").Component;
@@ -23,7 +23,6 @@ export interface ServiceCardItem {
   color: string;
 }
 
-// Footer
 export interface SocialLink {
   url: string;
   icon: string;
@@ -35,7 +34,6 @@ export interface FooterLink {
   href: string;
 }
 
-// API: Kategorien & Behandlungen (Preisliste)
 export interface CategoryItem {
   id: number;
   name: string;
@@ -82,4 +80,29 @@ export interface MonthlyOfferItem {
   description: string;
   active: boolean;
   price: string;
+}
+
+export interface FeaturesItem {
+  id: number;
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+export interface BrandItem {
+  name: string;
+  img: string;
+  description: string;
+}
+
+export interface ContactItem {
+  addressLine1: string;
+  addressLine2: string;
+  phone: string;
+  phoneHref: string;
+  email: string;
+  emailHref: string;
+  hoursWeekdays: string;
+  hoursNote: string;
+  vatId: string;
 }
