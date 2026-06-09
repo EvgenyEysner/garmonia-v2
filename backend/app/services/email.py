@@ -14,7 +14,7 @@ class ResendError(RuntimeError):
     ...
 
 
-def send_contact_email(data: dict, recipients: Iterable[str] | None = None) -> str:
+def send_contact_email(data: dict, recipients: Iterable[str] | None = None, reply_to: str | None = None) -> str:
     """Send a plain-text email via Resend. Returns the Resend message id.
 
     Configuration (settings):
@@ -49,8 +49,8 @@ def send_contact_email(data: dict, recipients: Iterable[str] | None = None) -> s
         "subject": f"Gewünschte Behandlung: {treatment.name}",
         "text": body,
     }
-    # if reply_to:
-    #     payload["reply_to"] = reply_to
+    if reply_to:
+        payload["reply_to"] = data["email"]
 
     try:
         response = requests.post(

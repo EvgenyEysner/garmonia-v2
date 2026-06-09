@@ -22,10 +22,9 @@ class GalleryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     permission_classes = [permissions.AllowAny]
 
     def list(self, request, *args, **kwargs):
-        count = self.get_queryset().count()
-
-        qs = list(self.get_queryset())
-        images = random.sample(qs, min(9, count)) if count else []
+        ids = list(self.get_queryset().values_list("pk", flat=True))
+        sample_ids = random.sample(ids, min(9, len(ids))) if ids else []
+        images = self.get_queryset().filter(pk__in=sample_ids)
         serializer = self.get_serializer(images, many=True)
         return Response(serializer.data)
 
@@ -35,29 +34,17 @@ class CategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny]
 
-    def list(self, request, *args, **kwargs):
-        serializer = self.get_serializer(self.get_queryset(), many=True)
-        return Response(serializer.data)
-
 
 class TreatmentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Treatment.objects.select_related("category").all()
     serializer_class = TreatmentSerializer
     permission_classes = [permissions.AllowAny]
 
-    def list(self, request, *args, **kwargs):
-        serializer = self.get_serializer(self.get_queryset(), many=True)
-        return Response(serializer.data)
-
 
 class MonthlyOfferViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = MonthlyOffer.objects.select_related("treatment").all()
+    queryset = MonthlyOffer.objects.filter(active=True).select_related("treatment__category")
     serializer_class = MonthlyOfferSerializer
     permission_classes = [permissions.AllowAny]
-
-    def list(self, request, *args, **kwargs):
-        serializer = self.get_serializer(self.get_queryset(), many=True)
-        return Response(serializer.data)
 
 
 class TestimonialViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -65,12 +52,9 @@ class TestimonialViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = TestimonialSerializer
     permission_classes = [permissions.AllowAny]
 
-    def list(self, request, *args, **kwargs):
-        serializer = self.get_serializer(self.get_queryset(), many=True)
-        return Response(serializer.data)
-
 
 class ContactView(APIView):
+    throttle_scope = "contact"
     permission_classes = [permissions.AllowAny]
     serializer_class = EmailSerializer
 
@@ -80,11 +64,6 @@ class ContactView(APIView):
 
         try:
             send_contact_email(serializer.validated_data)
-        except Treatment.DoesNotExist:
-            return Response(
-                {"treatment_id": ["Ungültige Behandlung."]},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
         except ResendError:
             return Response(
                 {"message": "E-Mail konnte nicht gesendet werden."},

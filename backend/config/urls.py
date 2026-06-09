@@ -7,13 +7,9 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
-from rest_framework import routers
 
-from app.routers import router as api_router
+from app.routers import router
 from app.views import ContactView
-
-router = routers.DefaultRouter()
-router.registry.extend(api_router.registry)
 
 urlpatterns = [
     path("admin/", admin.site.urls),

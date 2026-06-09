@@ -19,7 +19,8 @@ class Treatment(models.Model):
         Category, verbose_name="Kategorie", on_delete=models.CASCADE
     )
     description = models.TextField("Beschreibung", null=True, blank=True)
-    price = models.CharField("Preise", max_length=5, null=True)
+    price = models.CharField("Preise", max_length=5,
+                             null=True)  # charField for entries such as, for example, 60€ or more
 
     class Meta:
         ordering = ["category"]
@@ -38,8 +39,8 @@ class MonthlyOffer(models.Model):
     )
     title = models.CharField("Angebotsbezeichnung", max_length=128)
     description = models.TextField("Angebotsbeschreibung")
-    image = models.ImageField(verbose_name="Angebotsbild", upload_to="media")
-    active = models.BooleanField("Angebot aktiv?", default="False")
+    image = models.ImageField(verbose_name="Angebotsbild", upload_to="offers")
+    active = models.BooleanField("Angebot aktiv?", default=False)
     price = models.DecimalField("Preise", max_digits=10, decimal_places=2, null=True)
 
     class Meta:
@@ -72,6 +73,9 @@ class Testimonial(models.Model):
 class GalleryImage(models.Model):
     image = models.ImageField(verbose_name="Galeriebild", upload_to="gallery")
     description = models.CharField("Kurzbeschreibung", max_length=28)
+
+    def __str__(self):
+        return self.description
 
     class Meta:
         verbose_name = "Bild"
