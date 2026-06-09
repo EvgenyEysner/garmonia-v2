@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { features } from "@/content";
+import about1 from "@/assets/images/about/about-1.webp";
+import about2 from "@/assets/images/about/about-2.webp";
+import about3 from "@/assets/images/about/about-3.webp";
+import about4 from "@/assets/images/about/about-4.webp";
 </script>
 <template>
   <section id="about" class="py-24 bg-white">
@@ -48,14 +52,14 @@ import { features } from "@/content";
             <div class="space-y-4">
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dHklMjB0cmVhdG1lbnQlMjBmYWNpYWwlMjBza2luY2FyZXxlbnwxfHx8fDE3ODA0NzUyMTl8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                  :src="about1"
                   alt="Facial Treatment"
                   class="w-full h-64 object-cover"
                 />
               </div>
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="https://images.unsplash.com/photo-1676536162793-faa565d976d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBiZWF1dHklMjBzYWxvbiUyMHNwYSUyMGludGVyaW9yfGVufDF8fHx8MTc4MDQ3NTIxOHww&ixlib=rb-4.1.0&q=80&w=1080"
+                  :src="about2"
                   alt="Salon Interior"
                   class="w-full h-48 object-cover"
                 />
@@ -64,14 +68,14 @@ import { features } from "@/content";
             <div class="space-y-4 pt-8">
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="https://images.unsplash.com/photo-1643684391140-c5056cfd3436?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxiZWF1dHklMjB0cmVhdG1lbnQlMjBmYWNpYWwlMjBza2luY2FyZXxlbnwxfHx8fDE3ODA0NzUyMTl8MA&ixlib=rb-4.1.0&q=80&w=1080"
+                  :src="about3"
                   alt="Massage Treatment"
                   class="w-full h-48 object-cover"
                 />
               </div>
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="https://images.unsplash.com/photo-1758188753373-5b01a0fc6d9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBiZWF1dHklMjBzYWxvbiUyMHNwYSUyMGludGVyaW9yfGVufDF8fHx8MTc4MDQ3NTIxOHww&ixlib=rb-4.1.0&q=80&w=1080"
+                  :src="about4"
                   alt="Beauty Products"
                   class="w-full h-64 object-cover"
                 />

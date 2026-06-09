@@ -88,7 +88,7 @@ const scrollToServices = () => {
               :src="heroImage"
               alt="Kosmetikstudio Schönheitsecke Oldenburg"
               class="w-full h-[600px] object-cover"
-              loading="eager"
+              loading="lazy"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-sand-900/20 to-transparent"
