@@ -35,7 +35,7 @@ class MonthlyOfferListAPITest(APITestCase):
 
     def test_list_response_shape(self):
         response = self.client.get(self.url)
-        print(response.data[0])
+
         self.assertIn("title", response.data[0])
         self.assertIn("description", response.data[0])
         self.assertIn("price", response.data[0])
@@ -44,7 +44,7 @@ class MonthlyOfferListAPITest(APITestCase):
 class MonthlyOfferListEmptyAPITest(APITestCase):
     url = "/api/monthly-offer/"
 
-    def test_list_empty_when_no_categories(self):
+    def test_list_empty_when_no_offers(self):
         MonthlyOffer.objects.all().delete()
 
         response = self.client.get(self.url)
