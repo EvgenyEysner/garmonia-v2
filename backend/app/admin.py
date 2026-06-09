@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from unfold.admin import ModelAdmin
 
 from .models import Treatment, MonthlyOffer, Category, Testimonial, GalleryImage
 
 
 @admin.register(Treatment)
-class TreatmentAdmin(admin.ModelAdmin):
+class TreatmentAdmin(ModelAdmin):
     list_display = ("category", "name", "price")
     list_filter = ("category", "name")
     search_fields = ["name"]
@@ -13,7 +14,7 @@ class TreatmentAdmin(admin.ModelAdmin):
 
 
 @admin.register(MonthlyOffer)
-class MonthlyOfferAdmin(admin.ModelAdmin):
+class MonthlyOfferAdmin(ModelAdmin):
     list_display = ("title", "description", "active", "price")
     list_filter = ("title", "active")
     search_fields = ["title"]
@@ -21,25 +22,27 @@ class MonthlyOfferAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(ModelAdmin):
     list_display = ("name",)
     ordering = ["name"]
 
 
 @admin.register(Testimonial)
-class TestimonialAdmin(admin.ModelAdmin):
+class TestimonialAdmin(ModelAdmin):
     list_display = ("first_name", "last_name", "text")
     ordering = ["last_name"]
 
 
 @admin.register(GalleryImage)
-class GalleryAdmin(admin.ModelAdmin):
-    def image_tag(self, obj):
-        return format_html(
-            f'<img src="{obj.image.url}" style="width: 50px; height: 50px;"/>'
-        )
-
-    image_tag.short_description = "Bild"
-
+class GalleryAdmin(ModelAdmin):
     list_display = ("image_tag", "description")
     ordering = ["description"]
+
+    @admin.display(description="Bild")
+    def image_tag(self, obj):
+        if not obj.image:
+            return "—"
+        return format_html(
+            '<img src="{}" style="width: 50px; height: 50px; object-fit: cover;" alt="" />',
+            obj.image.url,
+        )

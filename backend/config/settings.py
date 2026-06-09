@@ -25,6 +25,15 @@ ALLOWED_HOSTS_LIST = env.list("ALLOWED_HOSTS")
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 INSTALLED_APPS = (
+    # --- django unfold
+    "unfold",  # before django.contrib.admin
+    "unfold.contrib.filters",  # optional, if special filters are needed
+    "unfold.contrib.forms",  # optional, if special form elements are needed
+    "unfold.contrib.inlines",  # optional, if special inlines are needed
+    "unfold.contrib.import_export",  # optional, if django-import-export package is used
+    "unfold.contrib.guardian",  # optional, if django-guardian package is used
+    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -37,13 +46,6 @@ INSTALLED_APPS = (
 
 LOCAL_APPS = ("accounts", "app")
 THIRD_PARTY_APPS = (
-    "unfold",
-    "unfold.contrib.filters",  # optional, if special filters are needed
-    "unfold.contrib.forms",  # optional, if special form elements are needed
-    "unfold.contrib.inlines",  # optional, if special inlines are needed
-    "unfold.contrib.import_export",  # optional, if django-import-export package is used
-    "unfold.contrib.guardian",  # optional, if django-guardian package is used
-    "unfold.contrib.simple_history",  # optional, if django-simple-history package is used
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
     "django_extensions",
@@ -95,6 +97,89 @@ DATABASES = {
         "HOST": env("DATABASE_HOST"),
         "PORT": env("DATABASE_PORT"),
     }
+}
+
+UNFOLD = {
+    "SITE_TITLE": "Webseite Verwaltung",
+    "SITE_DROPDOWN": [
+        {
+            "icon": "diamond",
+            "title": "Lagerverwaltung",
+            "link": "/",
+        },
+    ],
+    "SITE_URL": "/",
+    # "SITE_LOGO": {
+    #     "light": lambda request: static("image/koenig_logo.png"),
+    #     "dark": lambda request: static("image/koenig_logo.png"),
+    # },
+    "SITE_SYMBOL": "speed",
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+    "SHOW_BACK_BUTTON": False,
+    "THEME": "dark",
+    # "LOGIN": {
+    #     "image": lambda request: static("image/admin-bg.jpeg"),
+    # },
+    # "STYLES": [
+    #     lambda request: static("css/style.css"),
+    # ],
+    # "SCRIPTS": [
+    #     lambda request: static("js/script.js"),
+    # ],
+    "BORDER_RADIUS": "6px",
+    "COLORS": {
+        # Grau-Blau Basis (angepasst an die grauen Elemente im Logo)
+        "base": {
+            "50": "oklch(98% .005 240)",
+            "100": "oklch(96% .008 240)",
+            "200": "oklch(92% .012 240)",
+            "300": "oklch(86% .018 240)",
+            "400": "oklch(70% .025 240)",
+            "500": "oklch(55% .030 240)",
+            "600": "oklch(45% .032 240)",
+            "700": "oklch(38% .035 240)",
+            "800": "oklch(28% .035 240)",
+            "900": "oklch(22% .033 240)",
+            "950": "oklch(15% .030 240)",
+        },
+        # Primärfarbe: Dunkelblau aus den Solarpanels
+        "accent": {
+            "50": "oklch(96% .015 250)",
+            "100": "oklch(92% .030 250)",
+            "200": "oklch(85% .055 250)",
+            "300": "oklch(75% .085 250)",
+            "400": "oklch(60% .115 250)",
+            "500": "oklch(45% .140 252)",  # Hauptfarbe: Dunkelblau der Panels
+            "600": "oklch(38% .145 252)",
+            "700": "oklch(32% .140 252)",
+            "800": "oklch(26% .130 252)",
+            "900": "oklch(22% .110 252)",
+            "950": "oklch(16% .090 252)",
+        },
+        # Akzentfarbe: Gelb/Orange aus Sonne und Blitz
+        "primary": {
+            "50": "oklch(98% .020 85)",
+            "100": "oklch(95% .045 85)",
+            "200": "oklch(90% .090 85)",
+            "300": "oklch(85% .130 85)",
+            "400": "oklch(78% .165 80)",
+            "500": "oklch(72% .190 75)",  # Goldgelb der Sonne
+            "600": "oklch(65% .180 70)",
+            "700": "oklch(55% .160 70)",
+            "800": "oklch(45% .140 70)",
+            "900": "oklch(35% .110 70)",
+            "950": "oklch(25% .080 70)",
+        },
+        "font": {
+            "subtle-light": "var(--color-base-500)",
+            "subtle-dark": "var(--color-base-400)",
+            "default-light": "var(--color-base-700)",
+            "default-dark": "var(--color-base-300)",
+            "important-light": "var(--color-base-900)",
+            "important-dark": "var(--color-base-100)",
+        },
+    },
 }
 
 REST_FRAMEWORK = {
