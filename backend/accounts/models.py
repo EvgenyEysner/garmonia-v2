@@ -11,20 +11,25 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     """
 
     email = models.EmailField(unique=True)  # unique
-
-    # --- for shop customers
-    is_guest = models.BooleanField(default=False)
-
-    # --- Personal Information for shop customers
-    first_name = models.CharField(max_length=32, blank=True)
-    last_name = models.CharField(max_length=64, blank=True)
-    street = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=100, blank=True)
-    postal_code = models.CharField(max_length=10, blank=True)
-    country = models.CharField(max_length=100, default="Deutschland")
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    is_staff = models.BooleanField(
+        "staff status",
+        default=False,
+        help_text="Designates whether the user can log into this admin site.",
+    )
+    is_active = models.BooleanField(
+        "active",
+        default=True,
+        help_text=(
+            "Designates whether this user should be treated as active. "
+            "Unselect this instead of deleting accounts."
+        ),
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["first_name", "last_name"]
@@ -42,3 +47,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def clean(self):
+        super().clean()
+        self.email = self.__class__.objects.normalize_email(self.email)
