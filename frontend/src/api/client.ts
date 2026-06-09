@@ -1,4 +1,4 @@
-import axios, { type AxiosError, type AxiosInstance } from "axios";
+import axios, { type AxiosError, type AxiosInstance, type AxiosResponse } from "axios";
 import type {
   ApiErrorResponse,
   ContactFormPayload,
@@ -63,6 +63,20 @@ apiClient.interceptors.response.use(
   }
 );
 
+function unwrapList<T>(response: AxiosResponse<T[] | { results: T[] }>): T[] {
+  const data = response.data;
+  if (Array.isArray(data)) return data;
+  if (
+    data &&
+    typeof data === "object" &&
+    "results" in data &&
+    Array.isArray(data.results)
+  ) {
+    return data.results;
+  }
+  return [];
+}
+
 export const websiteApi = {
   sendContactForm: (data: ContactFormPayload) => {
     return apiClient.post("/contact/", data);
@@ -72,19 +86,31 @@ export const websiteApi = {
     return apiClient.get("/services/");
   },
 
-  getTreatments: () => {
-    return apiClient.get<TreatmentItem[]>("/treatment/");
+  getTreatments: async () => {
+    const response = await apiClient.get<TreatmentItem[] | { results: TreatmentItem[] }>(
+      "/treatment/"
+    );
+    return { ...response, data: unwrapList(response) };
   },
 
-  getGalleryImages: () => {
-    return apiClient.get<GalleryItem[]>("/gallery/");
+  getGalleryImages: async () => {
+    const response = await apiClient.get<GalleryItem[] | { results: GalleryItem[] }>(
+      "/gallery/"
+    );
+    return { ...response, data: unwrapList(response) };
   },
 
-  getTestimonials: () => {
-    return apiClient.get<TestimonialItem[]>("/testimonial/");
+  getTestimonials: async () => {
+    const response = await apiClient.get<
+      TestimonialItem[] | { results: TestimonialItem[] }
+    >("/testimonial/");
+    return { ...response, data: unwrapList(response) };
   },
 
-  getMonthlyOffer: () => {
-    return apiClient.get<MonthlyOfferItem[]>("/monthly-offer/");
+  getMonthlyOffer: async () => {
+    const response = await apiClient.get<
+      MonthlyOfferItem[] | { results: MonthlyOfferItem[] }
+    >("/monthly-offer/");
+    return { ...response, data: unwrapList(response) };
   },
 };

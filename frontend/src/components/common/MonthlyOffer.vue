@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from "vue";
 import { ArrowRight, Sparkles, Tag } from "@lucide/vue";
 import { websiteApi } from "@/api/client";
 import type { MonthlyOfferItem } from "@/types";
-import { resolveMediaUrl } from "@/utils";
+import { resolveMediaUrl, scrollToContact } from "@/utils";
 
 const offers = ref<MonthlyOfferItem[]>([]);
 const isLoading = ref(true);
