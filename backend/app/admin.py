@@ -38,11 +38,12 @@ class GalleryAdmin(ModelAdmin):
     list_display = ("image_tag", "description")
     ordering = ["description"]
 
-    @admin.display(description="Bild")
+    @admin.display(description="Galerie Bild")
     def image_tag(self, obj):
         if not obj.image:
             return "—"
         return format_html(
-            '<img src="{}" style="width: 50px; height: 50px; object-fit: cover;" alt="" />',
+            '<img src="{}" style="width: 50px; height: 50px; object-fit: cover;" alt="{}" />',
             obj.image.url,
+            obj.description,
         )
