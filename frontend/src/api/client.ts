@@ -3,6 +3,7 @@ import type {
   ApiErrorResponse,
   ContactFormPayload,
   GalleryItem,
+  MonthlyOfferItem,
   TestimonialItem,
   TreatmentItem,
 } from "@/types";
@@ -81,5 +82,9 @@ export const websiteApi = {
 
   getTestimonials: () => {
     return apiClient.get<TestimonialItem[]>("/testimonial/");
+  },
+
+  getMonthlyOffer: () => {
+    return apiClient.get<MonthlyOfferItem[]>("/monthly-offer/");
   },
 };

@@ -8,6 +8,7 @@ import service3 from "@/assets/images/service-3.webp";
 import service4 from "@/assets/images/service-4.webp";
 import service5 from "@/assets/images/service-5.webp";
 import service6 from "@/assets/images/service-6.webp";
+import MonthlyOffer from "@/components/common/MonthlyOffer.vue";
 
 const services: ServiceCardItem[] = [
   {
@@ -152,7 +153,11 @@ const scrollToContact = () => {
                 service.color,
               ]"
             >
-              <component :is="service.icon" class="w-8 h-8 text-white shrink-0" aria-hidden="true" />
+              <component
+                :is="service.icon"
+                class="w-8 h-8 text-white shrink-0"
+                aria-hidden="true"
+              />
             </div>
           </div>
 
@@ -182,31 +187,7 @@ const scrollToContact = () => {
           </div>
         </article>
       </div>
-
-      <div
-        class="mt-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-3xl p-8 md:p-12 text-center text-white shadow-xl"
-      >
-        <div class="max-w-3xl mx-auto">
-          <Sparkles class="w-12 h-12 mx-auto mb-4" aria-hidden="true" />
-          <h3 class="text-3xl font-bold mb-4">Monatsangebot im Juni</h3>
-          <p class="text-xl mb-2">Bioenzyme Therapie</p>
-          <div class="flex items-center justify-center gap-4 mb-6">
-            <span class="text-2xl line-through opacity-75">95€</span>
-            <span class="text-4xl font-bold">85€</span>
-          </div>
-          <p class="text-lg opacity-90 mb-6">
-            Erleben Sie unsere intensive Anti-Aging Behandlung zum Sonderpreis
-          </p>
-          <a
-            href="#contact"
-            class="inline-flex items-center justify-center gap-2 bg-white text-gold-600 px-8 py-4 rounded-xl font-semibold hover:bg-sand-50 transition-colors duration-200"
-            @click.prevent="scrollToContact"
-          >
-            <span>Jetzt Termin sichern</span>
-            <ArrowRight class="w-5 h-5 shrink-0" aria-hidden="true" />
-          </a>
-        </div>
-      </div>
+      <MonthlyOffer />
     </div>
   </section>
 </template>

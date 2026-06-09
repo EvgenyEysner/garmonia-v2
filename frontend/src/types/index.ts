@@ -46,7 +46,7 @@ export interface TreatmentItem {
   name: string;
   category: CategoryItem;
   description: string | null;
-  price: string | null;
+  price: string;
 }
 
 export interface PriceCategoryGroup {
@@ -72,4 +72,14 @@ export interface GalleryItem {
   id: number;
   image: string;
   description: string;
+}
+
+export interface MonthlyOfferItem {
+  id: number;
+  image: string;
+  treatment: TreatmentItem;
+  title: string;
+  description: string;
+  active: boolean;
+  price: string;
 }
