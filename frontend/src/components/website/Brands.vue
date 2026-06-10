@@ -1,60 +1,57 @@
 <script setup lang="ts">
-import { Award } from "@lucide/vue";
+import { Leaf } from "@lucide/vue";
 import { brands } from "@/content";
 </script>
 
 <template>
-  <section id="brands" class="py-24 bg-white scroll-mt-nav">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <div
-          class="inline-flex items-center gap-2 bg-gold-100 px-4 py-2 rounded-full mb-4"
+  <section id="brands" class="py-24 bg-gold-50 scroll-mt-nav" aria-labelledby="brands-heading">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="text-center mb-14 md:mb-16">
+        <h2
+          id="brands-heading"
+          class="text-3xl md:text-4xl font-serif font-medium text-sand-900 tracking-tight"
         >
-          <Award class="w-4 h-4 text-gold-600 shrink-0" aria-hidden="true" />
-          <span class="text-gold-600 font-semibold text-sm uppercase tracking-wider">
-            Unsere Partner
-          </span>
-        </div>
-
-        <h2 class="text-4xl md:text-5xl font-bold text-sand-900 mb-6">
-          Premium <span class="text-gold-500">Marken</span>
+          Unsere Marken
         </h2>
 
-        <p class="text-lg text-sand-600 max-w-2xl mx-auto">
-          Wir arbeiten ausschließlich mit hochwertigen Produkten führender Beauty-Marken
-        </p>
-      </div>
+        <div class="flex items-center justify-center gap-4 mt-6" aria-hidden="true">
+          <span class="h-px w-16 sm:w-24 md:w-32 bg-sand-300" />
+          <Leaf class="w-5 h-5 text-[#e8a4b8] shrink-0" />
+          <span class="h-px w-16 sm:w-24 md:w-32 bg-sand-300" />
+        </div>
+      </header>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
-        <div
+      <ul
+        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6 lg:gap-8 justify-items-center list-none p-0 m-0"
+      >
+        <li
           v-for="(brand, index) in brands"
           :key="`${brand.name}-${index}`"
-          class="group bg-gradient-to-br from-sand-50 to-gold-50 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 border border-sand-200 hover:border-gold-300"
+          class="w-full max-w-[10.5rem] sm:max-w-[11.5rem] md:max-w-[12.5rem]"
         >
           <div
-            class="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow overflow-hidden p-2"
+            class="group aspect-square bg-white rounded-[1.75rem] shadow-[0_4px_18px_rgba(28,25,23,0.08)] flex items-center justify-center p-6 sm:p-7 md:p-8 transition-all duration-300 hover:shadow-[0_10px_28px_rgba(28,25,23,0.12)] hover:-translate-y-0.5"
+            :title="brand.name"
           >
             <img
               :src="brand.img"
-              :alt="brand.name"
-              class="w-full h-full object-contain"
+              :alt="`${brand.name} Logo`"
+              class="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
               loading="lazy"
             />
           </div>
-          <h3 class="text-xl font-bold text-sand-900 mb-2">{{ brand.name }}</h3>
-          <p class="text-sm text-sand-600">{{ brand.description }}</p>
-        </div>
-      </div>
+        </li>
+      </ul>
 
       <div
-        class="mt-16 bg-gradient-to-br from-gold-50 to-sand-50 rounded-3xl p-8 md:p-12 border border-gold-200"
+        class="mt-16 md:mt-20 bg-white/70 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-gold-200/80 shadow-soft"
       >
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 class="text-3xl font-bold text-sand-900 mb-4">
+            <h3 class="text-2xl md:text-3xl font-bold text-sand-900 mb-4">
               Qualität, die Sie spüren
             </h3>
-            <p class="text-lg text-sand-700 mb-6">
+            <p class="text-lg text-sand-700 mb-6 leading-relaxed">
               Alle unsere Produkte sind dermatologisch getestet, hochkonzentriert und auf
               die individuellen Bedürfnisse Ihrer Haut abgestimmt.
             </p>
@@ -79,19 +76,19 @@ import { brands } from "@/content";
           </div>
 
           <div class="grid grid-cols-2 gap-4">
-            <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="bg-white rounded-2xl p-6 shadow-soft border border-sand-100">
               <div class="text-4xl font-bold text-gold-500 mb-2">100%</div>
               <p class="text-sm text-sand-600">Original Produkte</p>
             </div>
-            <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="bg-white rounded-2xl p-6 shadow-soft border border-sand-100">
               <div class="text-4xl font-bold text-gold-500 mb-2">5+</div>
               <p class="text-sm text-sand-600">Premium Marken</p>
             </div>
-            <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="bg-white rounded-2xl p-6 shadow-soft border border-sand-100">
               <div class="text-4xl font-bold text-gold-500 mb-2">10+</div>
               <p class="text-sm text-sand-600">Jahre Erfahrung</p>
             </div>
-            <div class="bg-white rounded-2xl p-6 shadow-lg">
+            <div class="bg-white rounded-2xl p-6 shadow-soft border border-sand-100">
               <div class="text-4xl font-bold text-gold-500 mb-2">500+</div>
               <p class="text-sm text-sand-600">Zufriedene Kunden</p>
             </div>
