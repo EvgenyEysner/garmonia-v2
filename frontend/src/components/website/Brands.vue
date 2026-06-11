@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import { Leaf } from "@lucide/vue";
 import { brands } from "@/content";
 </script>
 
 <template>
-  <section id="brands" class="py-24 bg-gold-50 scroll-mt-nav" aria-labelledby="brands-heading">
+  <section
+    id="brands"
+    class="py-24 bg-gold-50 scroll-mt-nav"
+    aria-labelledby="brands-heading"
+  >
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <header class="text-center mb-14 md:mb-16">
         <h2
           id="brands-heading"
-          class="text-3xl md:text-4xl font-serif font-medium text-sand-900 tracking-tight"
+          class="text-gold-500 font-semibold text-sm uppercase tracking-wider"
         >
           Unsere Marken
         </h2>
-
-        <div class="flex items-center justify-center gap-4 mt-6" aria-hidden="true">
-          <span class="h-px w-16 sm:w-24 md:w-32 bg-sand-300" />
-          <Leaf class="w-5 h-5 text-[#e8a4b8] shrink-0" />
-          <span class="h-px w-16 sm:w-24 md:w-32 bg-sand-300" />
-        </div>
+        <div class="h-1 w-16 bg-gold-400 mt-1 rounded-full mx-auto" />
       </header>
 
       <ul
