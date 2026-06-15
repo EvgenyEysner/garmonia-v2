@@ -6,6 +6,7 @@ import type {
   NavItem,
   ServiceCardItem,
   SocialLink,
+  TopSellerItem,
 } from "@/types";
 import {
   Award,
@@ -199,5 +200,52 @@ export const services: ServiceCardItem[] = [
       "Augenbrauen zupfen",
     ],
     color: "from-gold-300 to-gold-500",
+  },
+];
+
+export const treatments: TopSellerItem[] = [
+  {
+    name: "Fußpflege",
+    category: "Fußpflege",
+    price: "Ab 25€",
+    duration: "30 - 60 Min",
+    rating: 5,
+    reviews: 124,
+    description:
+      "Verwöhnung bis in die Zehenspitzen - erleben Sie eine luxuriöse Fußpflege, die intensive Regeneration mit ästhetischer Perfektion verbindet.",
+    image: service4,
+  },
+  {
+    name: "Nagelmodellage",
+    category: "Nageldesign",
+    price: "Ab 45€",
+    duration: "60 - 90  Min",
+    rating: 5,
+    reviews: 89,
+    description:
+      "Ob natürlicher Look, klassisches French oder aufwendige Nail-Art – wir verwandeln Ihre Fingernägel in langanhaltende Kunstwerke mit absolutem Wohlfühlfaktor.",
+    image: service5,
+  },
+  {
+    name: "Gesichtsbehandlung",
+    category: "Kosmetische Behandlungen",
+    price: "Ab 55€",
+    duration: "45 - 60 Min",
+    rating: 5,
+    reviews: 156,
+    description:
+      "Schenken Sie Ihrer Haut ein neues Strahlen: Unsere maßgeschneiderten Gesichtsbehandlungen verbinden Tiefenreinigung, intensive Pflege und pure Entspannung für einen sichtbar frischen, vitalen Teint.",
+    image: service1,
+  },
+  {
+    name: "Körperenthaarung mit Wachs",
+    category: "Körperenthaarung",
+    price: "Ab 20€",
+    duration: "15 - 60 Min",
+    rating: 5,
+    reviews: 201,
+    description:
+      "Erleben Sie das Gefühl makellos glatter Haut: Unsere professionelle Haarentfernung mit Warmwachs entfernt lästige Härchen besonders gründlich und sorgt für wochenlange, seidige Frische.",
+    image: service3,
   },
 ];

@@ -106,3 +106,14 @@ export interface ContactItem {
   hoursNote: string;
   vatId: string;
 }
+
+export interface TopSellerItem {
+  name: string;
+  category: string;
+  price: string;
+  duration: string;
+  rating: number;
+  reviews: number;
+  description: string;
+  image: string;
+}
