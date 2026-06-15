@@ -295,13 +295,27 @@ nav .nav-mobile-panel a:hover {
     color: var(--color-gold-400);
 }
 
-nav button[aria-label="Toggle Menu"] {
+nav a.nav-cta,
+nav a.nav-cta:hover {
+    color: #fff;
+}
+
+nav .nav-mobile-panel a.nav-cta:hover {
+    background-color: var(--color-gold-600);
+    color: #fff;
+}
+
+nav button[aria-label="Toggle Menu"],
+nav button[aria-label="Menü öffnen"],
+nav button[aria-label="Menü schließen"] {
     color: var(--color-sand-700);
     padding: 0.5rem;
     border-radius: 0.5rem;
     transition: background-color 0.2s, color 0.2s;
 }
 
-nav button[aria-label="Toggle Menu"]:hover {
+nav button[aria-label="Toggle Menu"]:hover,
+nav button[aria-label="Menü öffnen"]:hover,
+nav button[aria-label="Menü schließen"]:hover {
     background-color: var(--color-sand-100);
 }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Menu, Phone, X } from "@lucide/vue";
+import { CalendarClock, Menu, X } from "@lucide/vue";
 import { navItems } from "@/content";
 
 const isMobileMenuOpen = ref(false);
@@ -35,20 +35,30 @@ const scrollToSection = (href: string) => {
           </a>
         </div>
 
-        <!-- Desktop Navigation -->
-        <ul class="hidden md:flex space-x-8">
-          <li v-for="item in navItems" :key="item.href">
-            <a
-              :href="item.href"
-              @click.prevent="scrollToSection(item.href)"
-              class="text-sand-700 hover:text-gold-500 transition-colors duration-200 cursor-pointer"
-            >
-              {{ item.label }}
-            </a>
-          </li>
-        </ul>
+        <!-- Desktop: Navigation + Termin -->
+        <div class="hidden md:flex items-center gap-8">
+          <ul class="flex space-x-8">
+            <li v-for="item in navItems" :key="item.href">
+              <a
+                :href="item.href"
+                @click.prevent="scrollToSection(item.href)"
+                class="text-sand-700 hover:text-gold-500 transition-colors duration-200 cursor-pointer"
+              >
+                {{ item.label }}
+              </a>
+            </li>
+          </ul>
+          <a
+            href="#contact"
+            class="nav-cta inline-flex items-center gap-2 bg-gold-500 text-white px-5 py-2.5 rounded-lg hover:bg-gold-600 transition-colors font-semibold shrink-0"
+            @click.prevent="scrollToSection('#contact')"
+          >
+            <CalendarClock class="w-4 h-4 shrink-0" aria-hidden="true" />
+            <span>Termin buchen</span>
+          </a>
+        </div>
 
-        <!-- Mobile Menu Button -->
+        <!-- Mobile: Menü-Button -->
         <button
           type="button"
           @click="toggleMobileMenu"
@@ -79,10 +89,11 @@ const scrollToSection = (href: string) => {
         </li>
         <li class="px-4 py-3">
           <a
-            href="tel:+491797716648"
-            class="flex items-center justify-center gap-2 bg-gold-500 text-white px-4 py-3 rounded-lg hover:bg-gold-600 transition-colors w-full"
+            href="#contact"
+            class="nav-cta flex items-center justify-center gap-2 bg-gold-500 text-white px-4 py-3 rounded-lg hover:bg-gold-600 transition-colors w-full font-semibold"
+            @click.prevent="scrollToSection('#contact')"
           >
-            <Phone class="w-4 h-4 shrink-0" aria-hidden="true" />
+            <CalendarClock class="w-4 h-4 shrink-0" aria-hidden="true" />
             <span class="leading-none">Termin buchen</span>
           </a>
         </li>
