@@ -10,6 +10,7 @@ import PriceList from "@/components/website/PriceList.vue";
 import Brands from "@/components/website/Brands.vue";
 import Testimonials from "@/components/website/Testimonials.vue";
 import Contact from "@/components/website/Contact.vue";
+import ScrollToTop from "@/components/common/ScrollToTop.vue";
 </script>
 
 <template>
@@ -55,4 +56,5 @@ import Contact from "@/components/website/Contact.vue";
     <!-- <Contact /> -->
   </div>
   <Footer />
+  <ScrollToTop />
 </template>
