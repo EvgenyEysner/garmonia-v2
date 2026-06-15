@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     "django.contrib.postgres",
 )
 
-LOCAL_APPS = ("accounts", "app")
+LOCAL_APPS = ("accounts", "app", "review")
 THIRD_PARTY_APPS = (
     "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
@@ -292,3 +292,10 @@ RESEND_API_KEY = env("RESEND_API_KEY", default="")
 RESEND_FROM_EMAIL = env("RESEND_FROM_EMAIL", default="")
 RECIPIENT_ADDRESS = env("RECIPIENT_ADDRESS", default="garmonia.eisner@gmail.com")
 RESEND_TIMEOUT = env.int("RESEND_TIMEOUT", default=15)
+
+# --- Google API ----------------------------------------- #
+GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = env("GOOGLE_CLIENT_SECRET")
+GOOGLE_REDIRECT_URI = env("GOOGLE_REDIRECT_URI")
+GOOGLE_ACCOUNT_ID = env("GOOGLE_ACCOUNT_ID")
+GOOGLE_LOCATION_ID = env("GOOGLE_LOCATION_ID")

@@ -13,6 +13,7 @@ from app.views import ContactView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/reviews/", include("review.urls")),
     path("api/contact/", ContactView.as_view(), name="contact"),
     path("api/", include(router.urls)),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
