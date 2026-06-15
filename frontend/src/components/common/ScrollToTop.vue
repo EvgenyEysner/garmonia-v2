@@ -41,7 +41,7 @@ onUnmounted(() => {
     <button
       v-show="isVisible"
       type="button"
-      class="fixed bottom-6 right-4 sm:right-6 z-50 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-gold-500 text-white shadow-lg shadow-gold-300/50 ring-2 ring-white/80 hover:bg-gold-600 active:scale-95 transition-colors"
+      class="fixed bottom-[5.5rem] right-4 md:bottom-6 z-50 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-gold-500 text-white shadow-lg shadow-gold-300/50 ring-2 ring-white/80 hover:bg-gold-600 active:scale-95 transition-colors"
       aria-label="Nach oben scrollen"
       @click="scrollToTop"
     >

@@ -11,6 +11,7 @@ import Brands from "@/components/website/Brands.vue";
 import Testimonials from "@/components/website/Testimonials.vue";
 import Contact from "@/components/website/Contact.vue";
 import ScrollToTop from "@/components/common/ScrollToTop.vue";
+import CallFab from "@/components/common/CallFab.vue";
 </script>
 
 <template>
@@ -56,5 +57,6 @@ import ScrollToTop from "@/components/common/ScrollToTop.vue";
     <!-- <Contact /> -->
   </div>
   <Footer />
+  <CallFab />
   <ScrollToTop />
 </template>
