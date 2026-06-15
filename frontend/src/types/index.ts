@@ -56,6 +56,7 @@ export interface TestimonialItem {
   id: number;
   full_name: string;
   text: string;
+  rating: number;
 }
 
 export interface ContactFormPayload {

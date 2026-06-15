@@ -2,21 +2,31 @@
 import { computed, onMounted, ref } from "vue";
 import { Quote, Star } from "@lucide/vue";
 import { websiteApi } from "@/api/client";
+import { googleReviews } from "@/content";
 import type { TestimonialItem } from "@/types";
 
-/** Hardcoded bis Rating-Spalte in der DB existiert */
-const DEFAULT_RATING = 5;
+const DISPLAY_COUNT = 6;
 
 const testimonials = ref<TestimonialItem[]>([]);
 const isLoading = ref(true);
 const errorMessage = ref<string | null>(null);
 
 const reviewCountLabel = computed(() => {
-  const count = testimonials.value.length;
-  if (count === 0) return "aus unseren Bewertungen";
-  if (count === 1) return "aus 1 Bewertung";
-  return `aus ${count} Bewertungen`;
+  const count = googleReviews.count;
+  if (count === 1) return "aus 1 Google-Bewertung";
+  return `aus ${count} Google-Bewertungen`;
 });
+
+const headerRatingLabel = computed(() =>
+  googleReviews.rating.toLocaleString("de-DE", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  })
+);
+
+function starCount(rating: number): number {
+  return Math.max(1, Math.min(5, Math.round(rating)));
+}
 
 async function loadTestimonials() {
   isLoading.value = true;
@@ -24,7 +34,7 @@ async function loadTestimonials() {
 
   try {
     const { data } = await websiteApi.getTestimonials();
-    testimonials.value = data;
+    testimonials.value = data.slice(0, DISPLAY_COUNT);
   } catch {
     errorMessage.value =
       "Bewertungen konnten nicht geladen werden. Bitte versuchen Sie es später erneut.";
@@ -60,12 +70,12 @@ onMounted(loadTestimonials);
 
         <div class="flex flex-wrap items-center justify-center gap-2 mb-4">
           <Star
-            v-for="i in DEFAULT_RATING"
+            v-for="i in 5"
             :key="`header-star-${i}`"
             class="w-6 h-6 fill-gold-500 text-gold-500 shrink-0"
             aria-hidden="true"
           />
-          <span class="text-lg font-semibold text-sand-900 ml-2">5.0</span>
+          <span class="text-lg font-semibold text-sand-900 ml-2">{{ headerRatingLabel }}</span>
           <span class="text-sand-600">{{ reviewCountLabel }}</span>
         </div>
       </div>
@@ -98,7 +108,7 @@ onMounted(loadTestimonials);
 
           <div class="flex gap-1 mb-4">
             <Star
-              v-for="i in DEFAULT_RATING"
+              v-for="i in starCount(testimonial.rating)"
               :key="`${testimonial.id}-star-${i}`"
               class="w-5 h-5 fill-gold-500 text-gold-500 shrink-0"
               aria-hidden="true"

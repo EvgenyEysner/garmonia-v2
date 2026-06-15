@@ -56,6 +56,7 @@ class Testimonial(models.Model):
     first_name = models.CharField("Vorname", max_length=64)
     last_name = models.CharField("Nachname", max_length=64)
     text = models.TextField("Bewertung")
+    rating = models.IntegerField("Bewertung", default=5, max_length=5)
 
     class Meta:
         ordering = ("last_name",)

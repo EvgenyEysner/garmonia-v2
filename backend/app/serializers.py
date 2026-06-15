@@ -32,9 +32,14 @@ class MonthlyOfferSerializer(serializers.ModelSerializer):
 
 
 class TestimonialSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+
     class Meta:
         model = Testimonial
-        fields = ["id", "first_name", "last_name", "full_name", "text"]
+        fields = ["id", "first_name", "last_name", "full_name", "text", "rating"]
+
+    def get_full_name(self, obj):
+        return obj.full_name
 
 
 class EmailSerializer(serializers.Serializer):

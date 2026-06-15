@@ -51,6 +51,14 @@ class TestimonialViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Testimonial.objects.all()
     serializer_class = TestimonialSerializer
     permission_classes = [permissions.AllowAny]
+    sample_size = 6
+
+    def list(self, request, *args, **kwargs):
+        ids = list(self.get_queryset().values_list("pk", flat=True))
+        sample_ids = random.sample(ids, min(self.sample_size, len(ids))) if ids else []
+        testimonials = self.get_queryset().filter(pk__in=sample_ids)
+        serializer = self.get_serializer(testimonials, many=True)
+        return Response(serializer.data)
 
 
 class ContactView(APIView):

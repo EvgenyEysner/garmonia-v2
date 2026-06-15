@@ -52,6 +52,11 @@ export const contact: ContactItem = {
   vatId: "DE320418012",
 };
 
+export const googleReviews = {
+  rating: 4.9,
+  count: 22,
+};
+
 export const socialLinks: SocialLink[] = [
   { name: "Instagram", url: "https://www.instagram.com/olga.eisner/", icon: "instagram" },
   { name: "Facebook", url: "https://www.facebook.com/evgeny.eisner/", icon: "facebook" },
