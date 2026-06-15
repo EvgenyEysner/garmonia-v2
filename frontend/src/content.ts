@@ -79,8 +79,8 @@ export const features: FeaturesItem[] = [
   {
     id: 3,
     icon: Users,
-    title: "Erfahrung seit 2014",
-    description: "Über 10 Jahre Expertise in der Schönheitspflege",
+    title: "Erfahrung seit 2010",
+    description: "Über 15 Jahre Expertise in der Schönheitspflege",
   },
   {
     id: 4,

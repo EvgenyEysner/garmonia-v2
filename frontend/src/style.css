@@ -270,6 +270,16 @@ h1 {
 }
 
 /* Navbar: eigene Styles, damit globale a/button nicht das Menü überschreiben */
+nav a.nav-brand,
+nav a.nav-brand:hover {
+    color: inherit;
+    font-weight: inherit;
+}
+
+nav a.nav-brand:hover {
+    opacity: 1;
+}
+
 nav a {
     color: var(--color-sand-700);
     font-weight: 500;

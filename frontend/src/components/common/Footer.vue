@@ -26,11 +26,11 @@ const quickLinks: NavItem[] = [
             >
               <Sparkles class="w-5 h-5 text-white" aria-hidden="true" />
             </div>
-            <span class="text-xl font-semibold">Schönheitsecke Oldenburg</span>
+            <span class="text-xl font-semibold">Garmonia Kosmekitstudio</span>
           </div>
           <p class="text-sand-300 mb-6 max-w-md">
             Ihr exklusives Kosmetikstudio im Herzen von Oldenburg. Professionelle
-            Beauty-Behandlungen mit über 10 Jahren Erfahrung.
+            Beauty-Behandlungen mit über 15 Jahren Erfahrung.
           </p>
           <div class="flex gap-4">
             <a

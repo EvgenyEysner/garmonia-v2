@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { CalendarClock, Menu, X } from "@lucide/vue";
 import { navItems } from "@/content";
+import garmonia from "@/assets/garmonia_logo_neu.webp";
 
 const isMobileMenuOpen = ref(false);
 
@@ -25,13 +26,22 @@ const scrollToSection = (href: string) => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         <!-- Logo -->
-        <div class="flex items-center">
+        <div class="flex min-w-0 flex-1 items-center md:flex-none">
           <a
             href="#home"
+            class="nav-brand group inline-flex shrink-0 items-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-400"
+            aria-label="Garmonia Kosmetikstudio – Startseite"
             @click.prevent="scrollToSection('#home')"
-            class="flex items-center space-x-2"
           >
-            Schönheitsecke Oldenburg
+            <img
+              :src="garmonia"
+              alt="Garmonia Kosmetikstudio"
+              class="nav-brand-logo block h-12 w-auto max-w-[min(13rem,52vw)] object-contain object-left transition-opacity duration-200 group-hover:opacity-90 sm:h-18 sm:max-w-[15.5rem] md:h-16 md:max-w-[17.5rem]"
+              width="1837"
+              height="576"
+              decoding="async"
+              fetchpriority="high"
+            />
           </a>
         </div>
 

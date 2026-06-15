@@ -29,7 +29,7 @@ import about4 from "@/assets/images/about/about-4.webp";
           </p>
 
           <p class="text-lg text-sand-600 leading-relaxed">
-            Mit über 10 Jahren Erfahrung und höchsten Qualitätsstandards verwöhnen wir Sie
+            Mit über 15 Jahren Erfahrung und höchsten Qualitätsstandards verwöhnen wir Sie
             mit modernsten Behandlungsmethoden und hochwertigen Produkten. Ihre
             Zufriedenheit und Ihr Wohlbefinden stehen bei uns an erster Stelle.
           </p>

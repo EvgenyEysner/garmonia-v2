@@ -129,8 +129,10 @@ onMounted(loadTreatments);
 
       <div class="mt-12 text-center bg-gold-50 rounded-2xl p-8 border border-gold-200">
         <p class="text-sand-700 mb-4">
-          <span class="font-semibold">Hinweis:</span> Alle Preise verstehen sich als
-          Richtwerte. Der genaue Preis wird nach individueller Beratung festgelegt.
+          <span class="font-semibold">Hinweis:</span> Du kannst nicht kommen? Sag uns
+          bitte bis spätestens 24 Stunden vor deinem Termin Bescheid, damit wir den Platz
+          an andere Kunden vergeben können. Bitte habe Verständnis dafür, dass wir bei
+          kurzfristigen Absagen den Ausfall der Behandlung berechnen müssen
         </p>
         <a
           href="#contact"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRight, Sparkles, Star } from "@lucide/vue";
+import { ArrowRight, Sparkles } from "@lucide/vue";
 import heroImage from "@/assets/images/home-header.webp";
 import { scrollToContact } from "@/utils.ts";
 
@@ -31,7 +31,7 @@ const scrollToServices = () => {
             class="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gold-200"
           >
             <Sparkles class="w-4 h-4 text-gold-500 shrink-0" aria-hidden="true" />
-            <span class="text-sm text-sand-700">Seit über 10 Jahren in Oldenburg</span>
+            <span class="text-sm text-sand-700">Seit über 15 Jahren in Oldenburg</span>
           </div>
 
           <div class="space-y-4">
@@ -72,12 +72,12 @@ const scrollToServices = () => {
               <div class="text-sm text-sand-600">Zufriedene Kunden</div>
             </div>
             <div>
-              <div class="text-3xl font-bold text-gold-500">10+</div>
+              <div class="text-3xl font-bold text-gold-500">15+</div>
               <div class="text-sm text-sand-600">Jahre Erfahrung</div>
             </div>
             <div>
-              <div class="text-3xl font-bold text-gold-500">46</div>
-              <div class="text-sm text-sand-600">Behandlungen</div>
+              <div class="text-3xl font-bold text-gold-500">Über 40</div>
+              <div class="text-sm text-sand-600">Unterschiedliche Behandlungen</div>
             </div>
           </div>
         </div>
@@ -95,28 +95,28 @@ const scrollToServices = () => {
             />
           </div>
 
-          <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl">
-            <div class="flex items-center gap-3">
-              <div class="flex -space-x-2">
-                <div
-                  v-for="i in 3"
-                  :key="`avatar-${i}`"
-                  class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 border-2 border-white"
-                />
-              </div>
-              <div>
-                <div class="flex gap-1">
-                  <Star
-                    v-for="i in 5"
-                    :key="`star-${i}`"
-                    class="w-4 h-4 fill-gold-500 text-gold-500 shrink-0"
-                    aria-hidden="true"
-                  />
-                </div>
-                <p class="text-sm text-sand-600 mt-1">500+ Bewertungen</p>
-              </div>
-            </div>
-          </div>
+          <!--          <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl">-->
+          <!--            <div class="flex items-center gap-3">-->
+          <!--              <div class="flex -space-x-2">-->
+          <!--                <div-->
+          <!--                  v-for="i in 3"-->
+          <!--                  :key="`avatar-${i}`"-->
+          <!--                  class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-300 to-gold-500 border-2 border-white"-->
+          <!--                />-->
+          <!--              </div>-->
+          <!--              <div>-->
+          <!--                <div class="flex gap-1">-->
+          <!--                  <Star-->
+          <!--                    v-for="i in 5"-->
+          <!--                    :key="`star-${i}`"-->
+          <!--                    class="w-4 h-4 fill-gold-500 text-gold-500 shrink-0"-->
+          <!--                    aria-hidden="true"-->
+          <!--                  />-->
+          <!--                </div>-->
+          <!--                <p class="text-sm text-sand-600 mt-1">500+ Bewertungen</p>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
         </div>
       </div>
     </div>

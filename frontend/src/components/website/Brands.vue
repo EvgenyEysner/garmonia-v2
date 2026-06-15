@@ -50,8 +50,8 @@ import { brands } from "@/content";
               Qualität, die Sie spüren
             </h3>
             <p class="text-lg text-sand-700 mb-6 leading-relaxed">
-              Alle unsere Produkte sind dermatologisch getestet, hochkonzentriert und auf
-              die individuellen Bedürfnisse Ihrer Haut abgestimmt.
+              Alle unsere Produkte sind dermatologisch getestet und auf die individuellen
+              Bedürfnisse Ihrer Haut abgestimmt.
             </p>
             <ul class="space-y-3">
               <li class="flex items-center gap-2 text-sand-700">
@@ -83,7 +83,7 @@ import { brands } from "@/content";
               <p class="text-sm text-sand-600">Premium Marken</p>
             </div>
             <div class="bg-white rounded-2xl p-6 shadow-soft border border-sand-100">
-              <div class="text-4xl font-bold text-gold-500 mb-2">10+</div>
+              <div class="text-4xl font-bold text-gold-500 mb-2">15+</div>
               <p class="text-sm text-sand-600">Jahre Erfahrung</p>
             </div>
             <div class="bg-white rounded-2xl p-6 shadow-soft border border-sand-100">

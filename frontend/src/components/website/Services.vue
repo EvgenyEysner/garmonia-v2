@@ -28,8 +28,8 @@ import { scrollToContact } from "@/utils.ts";
         </h2>
 
         <p class="text-lg text-sand-600 max-w-2xl mx-auto">
-          Von Anti-Aging über Permanent Make-Up bis zur medizinischen Fußpflege –
-          entdecken Sie unser umfassendes Behandlungsangebot.
+          Von Anti-Aging über Permanent Make-Up bis zur verschiedener Fußpflege Angeboten
+          – entdecken Sie unser umfassendes Behandlungsangebot.
         </p>
       </div>
 
