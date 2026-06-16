@@ -1,16 +1,17 @@
 import os
 from datetime import timedelta
+from pathlib import Path
 
 # https://django-environ.readthedocs.io/en/latest/getting-started.html#installation
 import environ
 from corsheaders.defaults import default_methods
+from django.templatetags.static import static
 
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-# --- Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # --- Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, "../.env"))
@@ -104,86 +105,66 @@ UNFOLD = {
     "SITE_DROPDOWN": [
         {
             "icon": "diamond",
-            "title": "Lagerverwaltung",
-            "link": "/",
+            "title": "Garmonia Kosmetikstudio",
+            "link": "https://schoenheitsecke-oldenburg.de",
         },
     ],
-    "SITE_URL": "/",
-    # "SITE_LOGO": {
-    #     "light": lambda request: static("image/koenig_logo.png"),
-    #     "dark": lambda request: static("image/koenig_logo.png"),
-    # },
+    "SITE_URL": "https://schoenheitsecke-oldenburg.de",
+    "SITE_LOGO": {
+        "light": lambda request: static("image/garmonia_logo_neu.webp"),
+        "dark": lambda request: static("image/garmonia_logo_neu.webp"),
+    },
     "SITE_SYMBOL": "speed",
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": True,
     "SHOW_BACK_BUTTON": False,
-    "THEME": "dark",
-    # "LOGIN": {
-    #     "image": lambda request: static("image/admin-bg.jpeg"),
-    # },
-    # "STYLES": [
-    #     lambda request: static("css/style.css"),
-    # ],
-    # "SCRIPTS": [
-    #     lambda request: static("js/script.js"),
-    # ],
+    "THEME": "light",
+    "LOGIN": {
+        "image": lambda request: static("image/home-header.webp"),
+    },
     "BORDER_RADIUS": "6px",
     "COLORS": {
-        # Grau-Blau Basis (angepasst an die grauen Elemente im Logo)
+        # Sand (Sekundär) – frontend --color-sand-*
         "base": {
-            "50": "oklch(98% .005 240)",
-            "100": "oklch(96% .008 240)",
-            "200": "oklch(92% .012 240)",
-            "300": "oklch(86% .018 240)",
-            "400": "oklch(70% .025 240)",
-            "500": "oklch(55% .030 240)",
-            "600": "oklch(45% .032 240)",
-            "700": "oklch(38% .035 240)",
-            "800": "oklch(28% .035 240)",
-            "900": "oklch(22% .033 240)",
-            "950": "oklch(15% .030 240)",
+            "50": "#fafaf9",
+            "100": "#f5f5f4",
+            "200": "#e7e5e4",
+            "300": "#d6d3d1",
+            "400": "#a8a29e",
+            "500": "#78716c",
+            "600": "#57534e",
+            "700": "#44403c",
+            "800": "#292524",
+            "900": "#1c1917",
+            "950": "#0c0a09",
         },
-        # Primärfarbe: Dunkelblau aus den Solarpanels
-        "accent": {
-            "50": "oklch(96% .015 250)",
-            "100": "oklch(92% .030 250)",
-            "200": "oklch(85% .055 250)",
-            "300": "oklch(75% .085 250)",
-            "400": "oklch(60% .115 250)",
-            "500": "oklch(45% .140 252)",  # Hauptfarbe: Dunkelblau der Panels
-            "600": "oklch(38% .145 252)",
-            "700": "oklch(32% .140 252)",
-            "800": "oklch(26% .130 252)",
-            "900": "oklch(22% .110 252)",
-            "950": "oklch(16% .090 252)",
-        },
-        # Akzentfarbe: Gelb/Orange aus Sonne und Blitz
+        # Gold (Primär) – frontend --color-gold-*
         "primary": {
-            "50": "oklch(98% .020 85)",
-            "100": "oklch(95% .045 85)",
-            "200": "oklch(90% .090 85)",
-            "300": "oklch(85% .130 85)",
-            "400": "oklch(78% .165 80)",
-            "500": "oklch(72% .190 75)",  # Goldgelb der Sonne
-            "600": "oklch(65% .180 70)",
-            "700": "oklch(55% .160 70)",
-            "800": "oklch(45% .140 70)",
-            "900": "oklch(35% .110 70)",
-            "950": "oklch(25% .080 70)",
+            "50": "#faf7f2",
+            "100": "#f5ede0",
+            "200": "#ead9c0",
+            "300": "#dfc5a0",
+            "400": "#d4a373",
+            "500": "#c49363",
+            "600": "#b38353",
+            "700": "#8f6942",
+            "800": "#6b4f32",
+            "900": "#473521",
+            "950": "#2a1f14",
         },
+        # Textfarben – frontend body, nav, placeholders
         "font": {
-            "subtle-light": "var(--color-base-500)",
-            "subtle-dark": "var(--color-base-400)",
-            "default-light": "var(--color-base-700)",
-            "default-dark": "var(--color-base-300)",
-            "important-light": "var(--color-base-900)",
-            "important-dark": "var(--color-base-100)",
+            "subtle-light": "#78716c",
+            "subtle-dark": "#a8a29e",
+            "default-light": "#44403c",
+            "default-dark": "#d6d3d1",
+            "important-light": "#1c1917",
+            "important-dark": "#f5f5f4",
         },
     },
 }
 
 REST_FRAMEWORK = {
-    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -255,19 +236,60 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE")
+SECURE_HSTS_SECONDS = env.bool("DJANGO_SECURE_HSTS_SECONDS")
+if SECURE_HSTS_SECONDS > 0:
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+# --- Security middleware settings ------------------------------------------------ #
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_SSL_REDIRECT = SESSION_COOKIE_SECURE
+
+# --- Use X-Forwarded-Proto Header to determine SSL status (useful for API docs) --- #
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# --- Csrf middleware settings ------------------------------------------------------ #
+CSRF_COOKIE_SECURE = SESSION_COOKIE_SECURE
+
+# --- Referrer-Policy middleware ---------------------------------------------------- #
+REFERRER_POLICY = "same-origin"
+
+if DEBUG:
+    CSRF_TRUSTED_ORIGINS = [
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
+        "http://127.0.0.1",
+        "http://localhost",
+    ]
+else:
+    CSRF_TRUSTED_ORIGINS = env.list(
+        "CSRF_TRUSTED_ORIGINS",
+        default=["https://schoenheitsecke-oldenburg.de"],
+    )
+CSRF_USE_SESSIONS = True
+
+# --- CSP config ------------------------------------------ #
+# CSP_DEFAULT_SRC = (
+#     "'self'",
+#     "'unsafe-inline'",
+#     "localhost:8000",
+#     "unpkg.com",
+#     "https://maps.googleapis.com",
+#     "https://fonts.googleapis.com",
+#     "https://fonts.gstatic.com",
+#     "https://maps.gstatic.com",
+#     "https://cdn.jsdelivr.net",
+# )
+
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_URLS_REGEX = "/api/.*"
 
 CORS_ALLOW_METHODS = default_methods
-CORS_ALLOW_HEADERS = [
-    "content-type",
-    "authorization",
-    "x-csrftoken",
-    "accept",
-    "origin",
-]
 
 CORS_ALLOWED_ORIGINS = (
+    # Todo add FRONTEND URL in production
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 )
