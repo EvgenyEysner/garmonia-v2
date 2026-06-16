@@ -270,18 +270,16 @@ else:
 CSRF_USE_SESSIONS = True
 
 # --- CSP config ------------------------------------------ #
-# CSP_DEFAULT_SRC = (
-#     "'self'",
-#     "'unsafe-inline'",
-#     "localhost:8000",
-#     "unpkg.com",
-#     "https://maps.googleapis.com",
-#     "https://fonts.googleapis.com",
-#     "https://fonts.gstatic.com",
-#     "https://maps.gstatic.com",
-#     "https://cdn.jsdelivr.net",
-# )
-
+CSP_DEFAULT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    "localhost:8000",
+    "unpkg.com",
+    "https://maps.googleapis.com",
+    "https://fonts.googleapis.com",
+    "https://fonts.gstatic.com",
+    "https://maps.gstatic.com",
+)
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_URLS_REGEX = "/api/.*"
