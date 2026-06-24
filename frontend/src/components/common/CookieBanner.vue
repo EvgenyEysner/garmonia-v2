@@ -13,17 +13,23 @@ const {
   closeSettings,
 } = useCookieConsent();
 
+const analytics = ref(consent.categories.analytics);
 const externalMedia = ref(consent.categories.externalMedia);
 
 watch(
   () => consent.settingsOpen,
   (open) => {
-    if (open) externalMedia.value = consent.categories.externalMedia;
+    if (!open) return;
+    analytics.value = consent.categories.analytics;
+    externalMedia.value = consent.categories.externalMedia;
   }
 );
 
 function saveSelection() {
-  savePreferences({ externalMedia: externalMedia.value });
+  savePreferences({
+    analytics: analytics.value,
+    externalMedia: externalMedia.value,
+  });
 }
 </script>
 
@@ -140,6 +146,24 @@ function saveSelection() {
                 Aktiv
               </span>
             </div>
+
+            <!-- Statistik -->
+            <label
+              class="flex cursor-pointer items-start justify-between gap-4 rounded-xl border border-sand-200 p-4 transition-colors hover:border-sand-300"
+            >
+              <div>
+                <p class="text-sm font-semibold text-sand-900">Statistik</p>
+                <p class="mt-0.5 text-sm text-sand-600">
+                  Google Analytics zur anonymisierten Auswertung der
+                  Website-Nutzung (Google Ireland Ltd.).
+                </p>
+              </div>
+              <input v-model="analytics" type="checkbox" class="peer sr-only" />
+              <span
+                class="relative mt-0.5 h-6 w-11 shrink-0 rounded-full bg-sand-300 transition-colors after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:bg-gold-500 peer-checked:after:translate-x-5"
+                aria-hidden="true"
+              />
+            </label>
 
             <!-- Externe Medien -->
             <label

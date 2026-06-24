@@ -1,20 +1,18 @@
 import { computed, reactive, readonly } from "vue";
+import { disableAnalytics, enableAnalytics } from "@/services/analytics";
 
 /**
  * DSGVO/TTDSG-konformes Cookie-Consent-Management.
  *
  * Prinzipien:
  * - Notwendige Cookies sind immer aktiv und nicht abwählbar.
- * - Optionale Kategorien (z. B. externe Medien wie Google Maps) sind erst nach
- *   aktiver Einwilligung erlaubt (kein Vorab-Opt-in).
- * - Die Entscheidung wird mit Version + Zeitstempel gespeichert; eine
- *   Versionserhöhung erzwingt eine erneute Einwilligung.
+ * - Optionale Kategorien (Analytics, externe Medien) erst nach Einwilligung.
  */
 
 const STORAGE_KEY = "garmonia_cookie_consent";
-const CONSENT_VERSION = 1;
+const CONSENT_VERSION = 2;
 
-export type ConsentCategory = "externalMedia";
+export type ConsentCategory = "analytics" | "externalMedia";
 
 interface StoredConsent {
   version: number;
@@ -34,9 +32,18 @@ const state = reactive<ConsentState>({
   bannerOpen: false,
   settingsOpen: false,
   categories: {
+    analytics: false,
     externalMedia: false,
   },
 });
+
+function applyCategorySideEffects(): void {
+  if (state.categories.analytics) {
+    enableAnalytics();
+  } else {
+    disableAnalytics();
+  }
+}
 
 function loadFromStorage(): void {
   if (typeof window === "undefined") return;
@@ -54,9 +61,11 @@ function loadFromStorage(): void {
       return;
     }
 
+    state.categories.analytics = Boolean(parsed.categories?.analytics);
     state.categories.externalMedia = Boolean(parsed.categories?.externalMedia);
     state.decided = true;
     state.bannerOpen = false;
+    applyCategorySideEffects();
   } catch {
     state.bannerOpen = true;
   }
@@ -90,16 +99,19 @@ export function useCookieConsent() {
   init();
 
   function acceptAll(): void {
+    state.categories.analytics = true;
     state.categories.externalMedia = true;
     finishDecision();
   }
 
   function acceptEssentialOnly(): void {
+    state.categories.analytics = false;
     state.categories.externalMedia = false;
     finishDecision();
   }
 
   function savePreferences(categories: Record<ConsentCategory, boolean>): void {
+    state.categories.analytics = Boolean(categories.analytics);
     state.categories.externalMedia = Boolean(categories.externalMedia);
     finishDecision();
   }
@@ -109,6 +121,7 @@ export function useCookieConsent() {
     state.bannerOpen = false;
     state.settingsOpen = false;
     persist();
+    applyCategorySideEffects();
   }
 
   function openSettings(): void {

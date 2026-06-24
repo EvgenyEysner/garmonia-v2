@@ -78,9 +78,9 @@ const { openSettings } = useCookieConsent();
         <h3>Analyse-Tools und Tools von Drittanbietern</h3>
         <p>
           Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet
-          werden. Das geschieht vor allem mit sogenannten Analyseprogrammen.
-          Detaillierte Informationen zu diesen Analyseprogrammen finden Sie in der
-          folgenden Datenschutzerklärung.
+          werden. Das geschieht mit Ihrer Einwilligung über Google Analytics 4. Detaillierte
+          Informationen finden Sie im Abschnitt „Google Analytics“ unter
+          „Datenerfassung auf dieser Website“.
         </p>
 
         <h2>2. Hosting</h2>
@@ -392,8 +392,8 @@ const { openSettings } = useCookieConsent();
           eingesetzt werden, können Sie dies dieser Datenschutzerklärung entnehmen.
         </p>
         <p>
-          Ihre Einwilligung zu optionalen Cookies und externen Diensten können Sie
-          jederzeit anpassen oder widerrufen:
+          Ihre Einwilligung zu optionalen Cookies, Statistik-Tools und externen Diensten
+          können Sie jederzeit anpassen oder widerrufen:
         </p>
         <p>
           <button
@@ -404,6 +404,72 @@ const { openSettings } = useCookieConsent();
             <Cookie class="h-4 w-4" aria-hidden="true" />
             Cookie-Einstellungen öffnen
           </button>
+        </p>
+
+        <h3>Google Analytics</h3>
+        <p>
+          Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google
+          Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland.
+          Google Analytics verwendet Cookies und vergleichbare Technologien, die eine
+          Analyse der Benutzung der Website durch Sie ermöglichen. Die durch das Cookie
+          erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer
+          gekürzten IP-Adresse) werden in der Regel an einen Server von Google in den USA
+          übertragen und dort gespeichert.
+        </p>
+        <p>
+          Wir setzen Google Analytics ausschließlich mit Ihrer Einwilligung ein. Die
+          Einwilligung holen wir über unser Cookie-Banner in der Kategorie
+          <strong>„Statistik“</strong> ein. Ohne Ihre Einwilligung wird Google Analytics
+          nicht geladen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1
+          TDDDG, soweit der Zugriff auf Informationen in Ihrem Endgerät erforderlich ist.
+          Die Einwilligung ist jederzeit widerrufbar, z. B. über den Button
+          „Cookie-Einstellungen öffnen“ weiter oben auf dieser Seite.
+        </p>
+        <p>
+          <strong>Measurement ID:</strong> G-E8FDLDDD49<br />
+          <strong>Anbieter:</strong> Google Ireland Limited, Gordon House, Barrow Street,
+          Dublin 4, Irland (Mutterunternehmen: Google LLC, USA)
+        </p>
+        <p>
+          Google Analytics erfasst u. a. Seitenaufrufe, Verweildauer, ungefähren
+          geografischen Standort (auf Basis der IP-Adresse), Geräte- und Browserinformationen
+          sowie Interaktionen auf der Website. Wir nutzen die Auswertungen, um unser
+          Online-Angebot zu verbessern und zu verstehen, welche Inhalte für Besucher
+          relevant sind. Eine Zusammenführung mit anderen Datenquellen durch uns findet
+          nicht statt.
+        </p>
+        <p>
+          Google verarbeitet die Daten auch in den USA. Die Übermittlung stützt sich auf
+          die Standardvertragsklauseln der EU-Kommission. Google ist unter dem
+          „EU-US Data Privacy Framework“ (DPF) zertifiziert. Weitere Informationen:
+          <a href="https://policies.google.com/privacy?hl=de"
+            >https://policies.google.com/privacy?hl=de</a
+          >
+          und
+          <a href="https://business.safety.google/intl/de/controllerterms/"
+            >Auftragsverarbeitungsbedingungen von Google</a
+          >.
+        </p>
+        <p>
+          Die Speicherdauer der von Google Analytics erhobenen Daten richtet sich nach den
+          Einstellungen in unserem Google-Analytics-Konto (standardmäßig bis zu 14 Monate
+          für nutzerbezogene Ereignisdaten). Details entnehmen Sie der Datenschutzerklärung
+          von Google.
+        </p>
+        <p>
+          Sie können die Erfassung durch Google Analytics verhindern, indem Sie in den
+          Cookie-Einstellungen die Kategorie „Statistik“ deaktivieren oder Ihre Einwilligung
+          widerrufen. Zusätzlich können Sie das Browser-Add-on zur Deaktivierung von
+          Google Analytics installieren:
+          <a href="https://tools.google.com/dlpage/gaoptout?hl=de"
+            >https://tools.google.com/dlpage/gaoptout?hl=de</a
+          >.
+        </p>
+        <p>
+          Zur Speicherung Ihrer Einwilligung verwenden wir den Eintrag
+          <code>garmonia_cookie_consent</code> im lokalen Speicher Ihres Browsers. Dies
+          dient dem Nachweis Ihrer Entscheidung und der technischen Steuerung der optionalen
+          Dienste.
         </p>
 
         <h3>Kontaktformular</h3>
@@ -724,5 +790,13 @@ const { openSettings } = useCookieConsent();
   font-style: normal;
   line-height: 1.7;
   color: var(--color-sand-700, #44403c);
+}
+
+.legal :deep(code) {
+  border-radius: 0.25rem;
+  background-color: var(--color-sand-100, #f5f5f4);
+  padding: 0.125rem 0.375rem;
+  font-size: 0.875em;
+  color: var(--color-sand-800, #292524);
 }
 </style>
