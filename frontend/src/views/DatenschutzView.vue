@@ -688,48 +688,23 @@ const { openSettings } = useCookieConsent();
 
         <h2>6. Plugins und Tools</h2>
 
-        <h3>Google Fonts</h3>
+        <h3>OpenStreetMap (Kartenansicht)</h3>
         <p>
-          Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte
-          Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite
-          lädt Ihr Browser die benötigten Fonts in ihren Browsercache, um Texte und
-          Schriftarten korrekt anzuzeigen.
-        </p>
-        <p>
-          Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den
-          Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass
-          über Ihre IP-Adresse diese Website aufgerufen wurde. Die Nutzung von Google
-          Fonts erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der
-          Websitebetreiber hat ein berechtigtes Interesse an der einheitlichen
-          Darstellung des Schriftbildes auf seiner Website. Sofern eine entsprechende
-          Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf
-          Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die
-          Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im
-          Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst.
-          Die Einwilligung ist jederzeit widerrufbar.
-        </p>
-        <p>
-          Wenn Ihr Browser Google Fonts nicht unterstützt, wird eine Standardschrift von
-          Ihrem Computer genutzt. Weitere Informationen zu Google Fonts finden Sie unter
-          <a href="https://developers.google.com/fonts/faq"
-            >https://developers.google.com/fonts/faq</a
-          >
-          und in der Datenschutzerklärung von Google:
-          <a href="https://policies.google.com/privacy?hl=de"
-            >https://policies.google.com/privacy?hl=de</a
+          Auf unserer Kontaktseite binden wir eine interaktive Karte über OpenStreetMap
+          (Leaflet) ein, um Ihnen unseren Standort anzuzeigen. Beim Laden der Karte kann
+          Ihre IP-Adresse an die Server der OpenStreetMap Foundation bzw. der eingesetzten
+          Tile-Server übermittelt werden. Weitere Informationen finden Sie in der
+          Datenschutzerklärung von OpenStreetMap:
+          <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy"
+            >https://wiki.osmfoundation.org/wiki/Privacy_Policy</a
           >.
         </p>
         <p>
-          Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy
-          Framework“ (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen
-          Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei
-          Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF
-          zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards
-          einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter
-          folgendem Link:
-          <a href="https://www.dataprivacyframework.gov/participant/5780"
-            >https://www.dataprivacyframework.gov/participant/5780</a
-          >.
+          Die Einbindung erfolgt auf Grundlage unseres berechtigten Interesses an einer
+          ansprechenden Darstellung unseres Standorts (Art. 6 Abs. 1 lit. f DSGVO). Sofern
+          Sie in den Cookie-Einstellungen der Kategorie „Externe Medien“ zugestimmt haben,
+          erfolgt die Verarbeitung zusätzlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO
+          und § 25 Abs. 1 TDDDG.
         </p>
 
         <p class="!mt-10 text-sm text-sand-500">

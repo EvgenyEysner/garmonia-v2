@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from "vue";
 import { CheckCircle, Clock, Mail, MapPin, Phone, Send } from "@lucide/vue";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import type { Map as LeafletMap } from "leaflet";
 import { websiteApi } from "@/api/client";
 import type { ApiErrorResponse, PriceCategoryGroup, TreatmentItem } from "@/types";
 import { contact } from "@/content";
@@ -27,10 +23,19 @@ const STUDIO_LOCATION: [number, number] = parseStudioLocation(
 );
 
 const mapContainer = ref<HTMLElement | null>(null);
-let map: L.Map | null = null;
+let map: LeafletMap | null = null;
 
-function initMap() {
-  if (!mapContainer.value || map) return;
+async function initMap() {
+  if (!mapContainer.value || map || import.meta.env.SSR) return;
+
+  const { default: L } = await import("leaflet");
+  await import("leaflet/dist/leaflet.css");
+
+  const [markerIcon, markerIcon2x, markerShadow] = await Promise.all([
+    import("leaflet/dist/images/marker-icon.png"),
+    import("leaflet/dist/images/marker-icon-2x.png"),
+    import("leaflet/dist/images/marker-shadow.png"),
+  ]);
 
   map = L.map(mapContainer.value, {
     center: STUDIO_LOCATION,
@@ -45,9 +50,9 @@ function initMap() {
   }).addTo(map);
 
   const icon = L.icon({
-    iconUrl: markerIcon,
-    iconRetinaUrl: markerIcon2x,
-    shadowUrl: markerShadow,
+    iconUrl: markerIcon.default,
+    iconRetinaUrl: markerIcon2x.default,
+    shadowUrl: markerShadow.default,
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
@@ -151,7 +156,7 @@ async function handleSubmit() {
 
 onMounted(() => {
   loadTreatments();
-  initMap();
+  void initMap();
 });
 
 onBeforeUnmount(() => {
