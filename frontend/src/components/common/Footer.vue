@@ -2,6 +2,9 @@
 import type { NavItem } from "@/types";
 import { Mail, MapPin, Phone, Sparkles } from "@lucide/vue";
 import { contact, footerLinks, socialLinks } from "@/content.ts";
+import { useCookieConsent } from "@/composables/useCookieConsent";
+
+const { openSettings } = useCookieConsent();
 
 const currentYear = new Date().getFullYear();
 
@@ -119,7 +122,7 @@ const quickLinks: NavItem[] = [
           <p class="text-sand-400 text-sm">
             © {{ currentYear }} Schönheitsecke Oldenburg. Alle Rechte vorbehalten.
           </p>
-          <div class="flex gap-6 text-sm">
+          <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
             <a
               v-for="link in footerLinks"
               :key="link.href"
@@ -128,6 +131,13 @@ const quickLinks: NavItem[] = [
             >
               {{ link.label }}
             </a>
+            <button
+              type="button"
+              class="text-sand-400 hover:text-gold-400 transition-colors"
+              @click="openSettings"
+            >
+              Cookie-Einstellungen
+            </button>
           </div>
           <a
             href="https://softeis.dev"

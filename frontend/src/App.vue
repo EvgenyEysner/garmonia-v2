@@ -12,6 +12,7 @@ import Testimonials from "@/components/website/Testimonials.vue";
 import Contact from "@/components/website/Contact.vue";
 import ScrollToTop from "@/components/common/ScrollToTop.vue";
 import CallFab from "@/components/common/CallFab.vue";
+import CookieBanner from "@/components/common/CookieBanner.vue";
 </script>
 
 <template>
@@ -59,4 +60,5 @@ import CallFab from "@/components/common/CallFab.vue";
   <Footer />
   <CallFab />
   <ScrollToTop />
+  <CookieBanner />
 </template>

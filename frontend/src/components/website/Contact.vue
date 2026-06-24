@@ -1,9 +1,63 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, reactive, ref } from "vue";
 import { CheckCircle, Clock, Mail, MapPin, Phone, Send } from "@lucide/vue";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { websiteApi } from "@/api/client";
 import type { ApiErrorResponse, PriceCategoryGroup, TreatmentItem } from "@/types";
 import { contact } from "@/content";
+
+const DEFAULT_STUDIO_LOCATION: [number, number] = [53.1428031, 8.2226412];
+
+function parseStudioLocation(value: unknown): [number, number] {
+  if (typeof value !== "string") return DEFAULT_STUDIO_LOCATION;
+  const parts = value.split(",");
+  const lat = Number.parseFloat((parts[0] ?? "").trim());
+  const lng = Number.parseFloat((parts[1] ?? "").trim());
+  return Number.isFinite(lat) && Number.isFinite(lng)
+    ? [lat, lng]
+    : DEFAULT_STUDIO_LOCATION;
+}
+
+const STUDIO_LOCATION: [number, number] = parseStudioLocation(
+  import.meta.env.VITE_STUDIO_LOCATION
+);
+
+const mapContainer = ref<HTMLElement | null>(null);
+let map: L.Map | null = null;
+
+function initMap() {
+  if (!mapContainer.value || map) return;
+
+  map = L.map(mapContainer.value, {
+    center: STUDIO_LOCATION,
+    zoom: 16,
+    scrollWheelZoom: false,
+  });
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  const icon = L.icon({
+    iconUrl: markerIcon,
+    iconRetinaUrl: markerIcon2x,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41],
+  });
+
+  L.marker(STUDIO_LOCATION, { icon })
+    .addTo(map)
+    .bindPopup(`${contact.addressLine1}<br>${contact.addressLine2}`);
+}
 
 const formData = reactive({
   name: "",
@@ -95,7 +149,15 @@ async function handleSubmit() {
   }
 }
 
-onMounted(loadTreatments);
+onMounted(() => {
+  loadTreatments();
+  initMap();
+});
+
+onBeforeUnmount(() => {
+  map?.remove();
+  map = null;
+});
 </script>
 
 <template>
@@ -191,15 +253,11 @@ onMounted(loadTreatments);
           </div>
 
           <div class="bg-sand-100 rounded-2xl overflow-hidden">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2398.5924!2d8.2142!3d53.1435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTPCsDA4JzM2LjYiTiA4wrAxMic1MS4xIkU!5e0!3m2!1sde!2sde!4v1234567890"
-              width="100%"
-              height="300"
-              class="border-0"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Standort Schönheitsecke Oldenburg"
+            <div
+              ref="mapContainer"
+              class="h-[300px] w-full"
+              role="application"
+              aria-label="Standortkarte Schönheitsecke Oldenburg"
             />
           </div>
         </div>
@@ -364,3 +422,13 @@ onMounted(loadTreatments);
     </div>
   </section>
 </template>
+
+<style scoped>
+/* Leaflet nutzt intern hohe z-index-Werte – per Stacking-Context kapseln,
+   damit Navbar und Cookie-Banner darüber bleiben. */
+:deep(.leaflet-container) {
+  position: relative;
+  z-index: 0;
+  font: inherit;
+}
+</style>
