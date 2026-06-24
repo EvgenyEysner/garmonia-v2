@@ -22,15 +22,15 @@ const quickLinks: NavItem[] = [
 <template>
   <footer class="bg-sand-900 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid md:grid-cols-4 gap-12">
-        <div class="md:col-span-2">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="sm:col-span-2 lg:col-span-1">
           <div class="flex items-center space-x-2 mb-4">
             <div
               class="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center"
             >
               <Sparkles class="w-5 h-5 text-white" aria-hidden="true" />
             </div>
-            <span class="text-xl font-semibold">Garmonia Kosmekitstudio</span>
+            <span class="text-xl font-semibold">Garmonia Kosmetikstudio</span>
           </div>
           <p class="text-sand-300 mb-6 max-w-md">
             Ihr exklusives Kosmetikstudio im Herzen von Oldenburg. Professionelle
@@ -84,6 +84,18 @@ const quickLinks: NavItem[] = [
               </a>
             </li>
           </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-lg mb-4">Impressum</h3>
+          <p class="text-sand-400 text-sm mb-2">Angaben gemäß § 5 DDG</p>
+          <address class="not-italic text-sand-300 leading-relaxed">
+            Olga Eisner<br />
+            Kosmetikstudio Garmonia<br />
+            {{ contact.addressLine1 }}<br />
+            {{ contact.addressLine2 }}
+          </address>
+          <p class="text-sand-400 text-sm mt-3">USt-IdNr.: {{ contact.vatId }}</p>
         </div>
 
         <div>

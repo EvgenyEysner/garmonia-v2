@@ -155,11 +155,13 @@ const { openSettings } = useCookieConsent();
         </p>
         <address>
           Kosmetikstudio „Garmonia“<br />
-          Bahnhofsplatz 2a<br />
+          Bahnhofsplatz 2a, 2. OG<br />
           26122 Oldenburg<br />
-          Telefon: +49 (0) 441-18113030<br />
+          Telefon: +49 179 7716648<br />
           E-Mail:
-          <a href="mailto:garmonia.eisner@gmail.com">garmonia.eisner@gmail.com</a>
+          <a href="mailto:moin@schoenheitsecke-oldenburg.de"
+            >moin@schoenheitsecke-oldenburg.de</a
+          >
         </address>
         <p>
           Verantwortliche Stelle ist die natürliche oder juristische Person, die

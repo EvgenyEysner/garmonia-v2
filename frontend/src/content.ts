@@ -45,8 +45,8 @@ export const contact: ContactItem = {
   addressLine2: "26122 Oldenburg",
   phone: "+49 179 7716648",
   phoneHref: "tel:+491797716648",
-  email: "garmonia.eisner@gmail.com",
-  emailHref: "mailto:garmonia.eisner@gmail.com",
+  email: "moin@schoenheitsecke-oldenburg.de",
+  emailHref: "mailto:moin@schoenheitsecke-oldenburg.de",
   hoursWeekdays: "Montag - Freitag: 10:00 - 18:00 Uhr",
   hoursNote: "Termine nach Vereinbarung",
   vatId: "DE320418012",
@@ -63,7 +63,6 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const footerLinks: FooterLink[] = [
-  { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
 ];
 
