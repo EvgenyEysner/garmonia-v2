@@ -65,7 +65,6 @@ export const socialLinks: SocialLink[] = [
 export const footerLinks: FooterLink[] = [
   { label: "Impressum", href: "/impressum" },
   { label: "Datenschutz", href: "/datenschutz" },
-  { label: "AGB", href: "/agb" },
 ];
 
 export const features: FeaturesItem[] = [

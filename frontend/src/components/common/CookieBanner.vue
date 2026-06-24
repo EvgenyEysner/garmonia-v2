@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { RouterLink } from "vue-router";
 import { Cookie, X } from "@lucide/vue";
 import { useCookieConsent } from "@/composables/useCookieConsent";
 
@@ -69,10 +70,10 @@ function saveSelection() {
                 Optional binden wir externe Dienste und Inhalte ein, die Daten an
                 Drittanbieter übertragen können. Sie entscheiden, was Sie zulassen.
                 Mehr dazu in unserer
-                <a
-                  href="/datenschutz"
+                <RouterLink
+                  to="/datenschutz"
                   class="font-medium text-gold-600 underline underline-offset-2 hover:text-gold-700"
-                  >Datenschutzerklärung</a
+                  >Datenschutzerklärung</RouterLink
                 >.
               </p>
             </div>

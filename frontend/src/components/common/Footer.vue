@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import type { NavItem } from "@/types";
 import { Mail, MapPin, Phone, Sparkles } from "@lucide/vue";
 import { contact, footerLinks, socialLinks } from "@/content.ts";
@@ -123,14 +124,14 @@ const quickLinks: NavItem[] = [
             © {{ currentYear }} Schönheitsecke Oldenburg. Alle Rechte vorbehalten.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
-            <a
+            <RouterLink
               v-for="link in footerLinks"
               :key="link.href"
-              :href="link.href"
+              :to="link.href"
               class="text-sand-400 hover:text-gold-400 transition-colors"
             >
               {{ link.label }}
-            </a>
+            </RouterLink>
             <button
               type="button"
               class="text-sand-400 hover:text-gold-400 transition-colors"

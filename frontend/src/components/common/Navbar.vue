@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { CalendarClock, Menu, X } from "@lucide/vue";
 import { navItems } from "@/content";
 import garmonia from "@/assets/garmonia_logo_neu.webp";
+
+const route = useRoute();
+const router = useRouter();
 
 const isMobileMenuOpen = ref(false);
 
@@ -10,12 +14,17 @@ const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
 
-const scrollToSection = (href: string) => {
-  const element = document.querySelector(href);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth" });
-    isMobileMenuOpen.value = false;
+const scrollToSection = async (href: string) => {
+  isMobileMenuOpen.value = false;
+
+  // Von einer Unterseite (z. B. /datenschutz) zuerst zur Startseite navigieren;
+  // das scrollBehavior des Routers springt dann zum Anker.
+  if (route.path !== "/") {
+    await router.push({ path: "/", hash: href });
+    return;
   }
+
+  document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
 };
 </script>
 
