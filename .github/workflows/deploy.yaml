@@ -8,6 +8,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Add SSH Key
+        uses: appleboy/ssh-action@master
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
@@ -16,5 +23,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/www/garmonia
-            git pull https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/EvgenyEysner/garmonia-v2.git master
-            bash ./scripts/deploy.sh
+            # Git-Befehl mit Token
+            git pull https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/EvgenyEysner/garmonia.git master
+            docker compose down
+            docker compose build
+            docker compose up -d
