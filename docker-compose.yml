@@ -1,13 +1,23 @@
+# Production stack for schoenheitsecke-oldenburg.de
+# Project name fixes certbot volume name -> garmonia_certbot-etc (see mailcow/scripts/sync-letsencrypt.sh)
+name: garmonia
+
+networks:
+  garmonia-network:
+    driver: bridge
+
 volumes:
-  garmonia:
+  garmonia-db:
+  media:
+  staticfiles:
+  certbot-etc:
+  certbot-www:
 
 services:
   db:
     image: postgres:17-alpine
     volumes:
-      - garmonia:/var/lib/postgresql/data/
-    ports:
-      - "5432:5432"
+      - garmonia-db:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
@@ -20,6 +30,9 @@ services:
       retries: 5
     env_file:
       - .env
+    networks:
+      - garmonia-network
+
   backend:
     depends_on:
       db:
@@ -28,10 +41,62 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - ./backend:/src
-    container_name: garmonia_backend
-    ports:
-      - "8000:8000"
+      - media:/src/media
+      - staticfiles:/src/staticfiles
+    expose:
+      - "8000"
+    networks:
+      - garmonia-network
+    container_name: backend
     env_file: .env
-    command: bash ./scripts/run_backend_local.sh
+    command: bash ./scripts/run_backend.sh
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: https://schoenheitsecke-oldenburg.de
+    container_name: frontend
+    expose:
+      - "80"
+    networks:
+      - garmonia-network
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - staticfiles:/src/staticfiles:ro
+      - media:/src/media:ro
+      - certbot-etc:/etc/letsencrypt:ro
+      - ./nginx/proxy_params:/etc/nginx/proxy_params:ro
+      - certbot-www:/var/www/certbot:ro
+    networks:
+      - garmonia-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "nginx", "-t" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+    entrypoint: [ "sh", "-c", "trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;" ]
+    networks:
+      - garmonia-network
     restart: unless-stopped

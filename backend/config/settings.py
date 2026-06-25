@@ -21,7 +21,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS_LIST = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
@@ -237,7 +237,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE")
-SECURE_HSTS_SECONDS = env.bool("DJANGO_SECURE_HSTS_SECONDS")
+SECURE_HSTS_SECONDS = env.int("DJANGO_SECURE_HSTS_SECONDS", default=0)
 if SECURE_HSTS_SECONDS > 0:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
@@ -286,10 +286,14 @@ CORS_URLS_REGEX = "/api/.*"
 
 CORS_ALLOW_METHODS = default_methods
 
-CORS_ALLOWED_ORIGINS = (
-    # Todo add FRONTEND URL in production
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+CORS_ALLOWED_ORIGINS = env.list(
+    "CORS_ALLOWED_ORIGINS",
+    default=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "https://schoenheitsecke-oldenburg.de",
+        "https://www.schoenheitsecke-oldenburg.de",
+    ],
 )
 
 LANGUAGE_CODE = "de-de"
