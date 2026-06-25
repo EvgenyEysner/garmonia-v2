@@ -11,10 +11,13 @@ logger = logging.getLogger(__name__)
 
 class ResendError(RuntimeError):
     """Raised when Resend rejects a message or is unreachable."""
+
     ...
 
 
-def send_contact_email(data: dict, recipients: Iterable[str] | None = None, reply_to: str | None = None) -> str:
+def send_contact_email(
+    data: dict, recipients: Iterable[str] | None = None, reply_to: str | None = None
+) -> str:
     """Send a plain-text email via Resend. Returns the Resend message id.
 
     Configuration (settings):
@@ -27,7 +30,7 @@ def send_contact_email(data: dict, recipients: Iterable[str] | None = None, repl
     api_key = getattr(settings, "RESEND_API_KEY", "") or ""
     from_email = getattr(settings, "RESEND_FROM_EMAIL", "") or ""
     endpoint = (
-            getattr(settings, "RESEND_ENDPOINT", "") or "https://api.resend.com/emails"
+        getattr(settings, "RESEND_ENDPOINT", "") or "https://api.resend.com/emails"
     )
     if not api_key:
         raise ResendError("RESEND_API_KEY is not configured")

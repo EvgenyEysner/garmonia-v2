@@ -42,7 +42,9 @@ class TreatmentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 
 class MonthlyOfferViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
-    queryset = MonthlyOffer.objects.filter(active=True).select_related("treatment__category")
+    queryset = MonthlyOffer.objects.filter(active=True).select_related(
+        "treatment__category"
+    )
     serializer_class = MonthlyOfferSerializer
     permission_classes = [permissions.AllowAny]
 
@@ -71,7 +73,9 @@ class ContactView(APIView):
         serializer.is_valid(raise_exception=True)
 
         try:
-            send_contact_email(serializer.validated_data)
+            send_contact_email(
+                serializer.validated_data, reply_to=request.data["email"]
+            )
         except ResendError:
             return Response(
                 {"message": "E-Mail konnte nicht gesendet werden."},

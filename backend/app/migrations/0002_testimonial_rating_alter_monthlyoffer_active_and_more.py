@@ -4,25 +4,26 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('app', '0001_initial'),
+        ("app", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='testimonial',
-            name='rating',
-            field=models.IntegerField(default=5, max_length=5, verbose_name='Bewertung'),
+            model_name="testimonial",
+            name="rating",
+            field=models.IntegerField(
+                default=5, max_length=5, verbose_name="Bewertung"
+            ),
         ),
         migrations.AlterField(
-            model_name='monthlyoffer',
-            name='active',
-            field=models.BooleanField(default=False, verbose_name='Angebot aktiv?'),
+            model_name="monthlyoffer",
+            name="active",
+            field=models.BooleanField(default=False, verbose_name="Angebot aktiv?"),
         ),
         migrations.AlterField(
-            model_name='monthlyoffer',
-            name='image',
-            field=models.ImageField(upload_to='offers', verbose_name='Angebotsbild'),
+            model_name="monthlyoffer",
+            name="image",
+            field=models.ImageField(upload_to="offers", verbose_name="Angebotsbild"),
         ),
     ]

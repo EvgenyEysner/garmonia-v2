@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -19,8 +20,9 @@ class Treatment(models.Model):
         Category, verbose_name="Kategorie", on_delete=models.CASCADE
     )
     description = models.TextField("Beschreibung", null=True, blank=True)
-    price = models.CharField("Preise", max_length=5,
-                             null=True)  # charField for entries such as, for example, 60€ or more
+    price = models.CharField(
+        "Preise", max_length=5, null=True
+    )  # charField for entries such as, for example, 60€ or more
 
     class Meta:
         ordering = ["category"]
@@ -56,7 +58,9 @@ class Testimonial(models.Model):
     first_name = models.CharField("Vorname", max_length=64)
     last_name = models.CharField("Nachname", max_length=64)
     text = models.TextField("Bewertung")
-    rating = models.IntegerField("Bewertung", default=5)
+    rating = models.IntegerField(
+        "Bewertung", default=5, validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
 
     class Meta:
         ordering = ("last_name",)

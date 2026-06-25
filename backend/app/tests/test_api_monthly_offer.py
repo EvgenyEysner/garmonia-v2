@@ -11,16 +11,34 @@ class MonthlyOfferListAPITest(APITestCase):
     def setUpTestData(cls):
         category_1 = Category.objects.create(name="Gesichtsbehandlungen")
         category_2 = Category.objects.create(name="Körperhandlungen")
-        treatment_1 = Treatment.objects.create(name="Gesichtsbehandlung", description="Gesichtsbehandlungen",
-                                               category=category_1,
-                                               price="100")
-        treatment_2 = Treatment.objects.create(name="Körperbehandlung", description="Körperhandlungen",
-                                               category=category_2,
-                                               price="150")
-        MonthlyOffer.objects.create(title="Gesichtsbehandlung", description="Angebot Gesichtsbehandlung",
-                                    treatment=treatment_1, image="", price=50.00, active=False)
-        MonthlyOffer.objects.create(title="Körperbehandlung", description="Angebot Körperhandlungen",
-                                    treatment=treatment_2, image="", price=100.00, active=True)
+        treatment_1 = Treatment.objects.create(
+            name="Gesichtsbehandlung",
+            description="Gesichtsbehandlungen",
+            category=category_1,
+            price="100",
+        )
+        treatment_2 = Treatment.objects.create(
+            name="Körperbehandlung",
+            description="Körperhandlungen",
+            category=category_2,
+            price="150",
+        )
+        MonthlyOffer.objects.create(
+            title="Gesichtsbehandlung",
+            description="Angebot Gesichtsbehandlung",
+            treatment=treatment_1,
+            image="",
+            price=50.00,
+            active=False,
+        )
+        MonthlyOffer.objects.create(
+            title="Körperbehandlung",
+            description="Angebot Körperhandlungen",
+            treatment=treatment_2,
+            image="",
+            price=100.00,
+            active=True,
+        )
 
     def test_list_return_200(self):
         response = self.client.get(self.url)

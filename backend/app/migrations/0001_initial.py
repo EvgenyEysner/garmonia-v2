@@ -5,81 +5,166 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=128, verbose_name='Kategorie')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=128, verbose_name="Kategorie")),
             ],
             options={
-                'verbose_name': 'Kategorie',
-                'verbose_name_plural': 'Kategorien',
-                'ordering': ['name'],
+                "verbose_name": "Kategorie",
+                "verbose_name_plural": "Kategorien",
+                "ordering": ["name"],
             },
         ),
         migrations.CreateModel(
-            name='GalleryImage',
+            name="GalleryImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='gallery', verbose_name='Galeriebild')),
-                ('description', models.CharField(max_length=28, verbose_name='Kurzbeschreibung')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(upload_to="gallery", verbose_name="Galeriebild"),
+                ),
+                (
+                    "description",
+                    models.CharField(max_length=28, verbose_name="Kurzbeschreibung"),
+                ),
             ],
             options={
-                'verbose_name': 'Bild',
-                'verbose_name_plural': 'Bilder',
+                "verbose_name": "Bild",
+                "verbose_name_plural": "Bilder",
             },
         ),
         migrations.CreateModel(
-            name='Testimonial',
+            name="Testimonial",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=64, verbose_name='Vorname')),
-                ('last_name', models.CharField(max_length=64, verbose_name='Nachname')),
-                ('text', models.TextField(verbose_name='Bewertung')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=64, verbose_name="Vorname")),
+                ("last_name", models.CharField(max_length=64, verbose_name="Nachname")),
+                ("text", models.TextField(verbose_name="Bewertung")),
             ],
             options={
-                'verbose_name': 'Bewertung',
-                'verbose_name_plural': 'Bewertungen',
-                'ordering': ('last_name',),
+                "verbose_name": "Bewertung",
+                "verbose_name_plural": "Bewertungen",
+                "ordering": ("last_name",),
             },
         ),
         migrations.CreateModel(
-            name='Treatment',
+            name="Treatment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('description', models.TextField(blank=True, null=True, verbose_name='Beschreibung')),
-                ('price', models.CharField(max_length=5, null=True, verbose_name='Preise')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.category', verbose_name='Kategorie')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="Name")),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="Beschreibung"
+                    ),
+                ),
+                (
+                    "price",
+                    models.CharField(max_length=5, null=True, verbose_name="Preise"),
+                ),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="app.category",
+                        verbose_name="Kategorie",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Behandlung',
-                'verbose_name_plural': 'Behandlungen',
-                'ordering': ['category'],
+                "verbose_name": "Behandlung",
+                "verbose_name_plural": "Behandlungen",
+                "ordering": ["category"],
             },
         ),
         migrations.CreateModel(
-            name='MonthlyOffer',
+            name="MonthlyOffer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=128, verbose_name='Angebotsbezeichnung')),
-                ('description', models.TextField(verbose_name='Angebotsbeschreibung')),
-                ('image', models.ImageField(upload_to='media', verbose_name='Angebotsbild')),
-                ('active', models.BooleanField(default='False', verbose_name='Angebot aktiv?')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10, null=True, verbose_name='Preise')),
-                ('treatment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app.treatment', verbose_name='Monatliches Angebot')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        max_length=128, verbose_name="Angebotsbezeichnung"
+                    ),
+                ),
+                ("description", models.TextField(verbose_name="Angebotsbeschreibung")),
+                (
+                    "image",
+                    models.ImageField(upload_to="media", verbose_name="Angebotsbild"),
+                ),
+                (
+                    "active",
+                    models.BooleanField(default="False", verbose_name="Angebot aktiv?"),
+                ),
+                (
+                    "price",
+                    models.DecimalField(
+                        decimal_places=2,
+                        max_digits=10,
+                        null=True,
+                        verbose_name="Preise",
+                    ),
+                ),
+                (
+                    "treatment",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="app.treatment",
+                        verbose_name="Monatliches Angebot",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Angebot',
-                'verbose_name_plural': 'Angebote',
-                'ordering': ['title'],
+                "verbose_name": "Angebot",
+                "verbose_name_plural": "Angebote",
+                "ordering": ["title"],
             },
         ),
     ]

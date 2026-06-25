@@ -9,9 +9,13 @@ class GalleryListAPITest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        GalleryImage.objects.create(image="test-1.png", description="Gesichtsbehandlungen")
+        GalleryImage.objects.create(
+            image="test-1.png", description="Gesichtsbehandlungen"
+        )
         GalleryImage.objects.create(image="test-2.png", description="Produkte")
-        GalleryImage.objects.create(image="test-3.png", description="Körperbehandlungen")
+        GalleryImage.objects.create(
+            image="test-3.png", description="Körperbehandlungen"
+        )
 
     def test_list_return_200(self):
         response = self.client.get(self.url)

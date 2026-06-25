@@ -4,50 +4,57 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('accounts', '0002_add_is_staff_is_active'),
+        ("accounts", "0002_add_is_staff_is_active"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='customuser',
-            name='city',
+            model_name="customuser",
+            name="city",
         ),
         migrations.RemoveField(
-            model_name='customuser',
-            name='country',
+            model_name="customuser",
+            name="country",
         ),
         migrations.RemoveField(
-            model_name='customuser',
-            name='is_guest',
+            model_name="customuser",
+            name="is_guest",
         ),
         migrations.RemoveField(
-            model_name='customuser',
-            name='postal_code',
+            model_name="customuser",
+            name="postal_code",
         ),
         migrations.RemoveField(
-            model_name='customuser',
-            name='street',
+            model_name="customuser",
+            name="street",
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='first_name',
+            model_name="customuser",
+            name="first_name",
             field=models.CharField(max_length=30),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='is_active',
-            field=models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active'),
+            model_name="customuser",
+            name="is_active",
+            field=models.BooleanField(
+                default=True,
+                help_text="Designates whether this user should be treated as active. Unselect this instead of deleting accounts.",
+                verbose_name="active",
+            ),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='is_staff',
-            field=models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status'),
+            model_name="customuser",
+            name="is_staff",
+            field=models.BooleanField(
+                default=False,
+                help_text="Designates whether the user can log into this admin site.",
+                verbose_name="staff status",
+            ),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='last_name',
+            model_name="customuser",
+            name="last_name",
             field=models.CharField(max_length=30),
         ),
     ]

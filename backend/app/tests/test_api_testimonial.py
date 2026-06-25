@@ -41,7 +41,7 @@ class TestimonialListAPITest(APITestCase):
         response = self.client.get(self.url)
         data = response.data[0]
 
-        self.assertEqual(data["full_name"], f'{data["first_name"]} {data["last_name"]}')
+        self.assertEqual(data["full_name"], f"{data['first_name']} {data['last_name']}")
 
 
 class TestimonialListEmptyAPITest(APITestCase):
@@ -60,7 +60,9 @@ class TestimonialListSmallSampleAPITest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Testimonial.objects.create(first_name="Max", last_name="Muster", text="Top!", rating=5)
+        Testimonial.objects.create(
+            first_name="Max", last_name="Muster", text="Top!", rating=5
+        )
         Testimonial.objects.create(
             first_name="Anna",
             last_name="Beispiel",

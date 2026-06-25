@@ -86,10 +86,11 @@ services:
       - frontend
     restart: unless-stopped
     healthcheck:
-      test: [ "CMD", "nginx", "-t" ]
+      test: [ "CMD-SHELL", "nginx -t && wget -q -O- --no-verbose --tries=1 --spider http://127.0.0.1:80/ || exit 1" ]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 10s
 
   certbot:
     image: certbot/certbot

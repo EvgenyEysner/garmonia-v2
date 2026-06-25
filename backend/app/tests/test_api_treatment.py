@@ -11,10 +11,18 @@ class GalleryListAPITest(APITestCase):
     def setUpTestData(cls):
         category_1 = Category.objects.create(name="Gesichtsbehandlungen")
         category_2 = Category.objects.create(name="Körperhandlungen")
-        Treatment.objects.create(name="Gesichtsbehandlung", description="Gesichtsbehandlungen", category=category_1,
-                                 price="100")
-        Treatment.objects.create(name="Körperbehandlung", description="Körperhandlungen", category=category_2,
-                                 price="50")
+        Treatment.objects.create(
+            name="Gesichtsbehandlung",
+            description="Gesichtsbehandlungen",
+            category=category_1,
+            price="100",
+        )
+        Treatment.objects.create(
+            name="Körperbehandlung",
+            description="Körperhandlungen",
+            category=category_2,
+            price="50",
+        )
 
     def test_list_return_200(self):
         response = self.client.get(self.url)

@@ -15,9 +15,7 @@ class TestSendEmailService(TestCase):
     @classmethod
     def setUp(cls):
         category = Category.objects.create(name="Kosmetik")
-        cls.treatment = Treatment.objects.create(
-            name="Peeling", category=category
-        )
+        cls.treatment = Treatment.objects.create(name="Peeling", category=category)
 
     @patch("app.services.email.requests.post")
     def test_send_email(self, mock_post):
