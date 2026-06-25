@@ -33,12 +33,14 @@ class CategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny]
+    pagination_class = None
 
 
 class TreatmentViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Treatment.objects.select_related("category").all()
     serializer_class = TreatmentSerializer
     permission_classes = [permissions.AllowAny]
+    pagination_class = None
 
 
 class MonthlyOfferViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
@@ -47,6 +49,7 @@ class MonthlyOfferViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     )
     serializer_class = MonthlyOfferSerializer
     permission_classes = [permissions.AllowAny]
+    pagination_class = None
 
 
 class TestimonialViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):

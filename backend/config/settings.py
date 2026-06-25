@@ -65,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "csp.middleware.CSPMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -269,18 +270,6 @@ else:
     )
 CSRF_USE_SESSIONS = True
 
-# --- CSP config ------------------------------------------ #
-CSP_DEFAULT_SRC = (
-    "'self'",
-    "'unsafe-inline'",
-    "localhost:8000",
-    "unpkg.com",
-    "https://maps.googleapis.com",
-    "https://fonts.googleapis.com",
-    "https://fonts.gstatic.com",
-    "https://maps.gstatic.com",
-)
-
 CORS_ALLOW_CREDENTIALS = True
 CORS_URLS_REGEX = "/api/.*"
 
@@ -294,6 +283,40 @@ CORS_ALLOWED_ORIGINS = env.list(
         "https://schoenheitsecke-oldenburg.de",
         "https://www.schoenheitsecke-oldenburg.de",
     ],
+)
+
+# --- CSP Config ----------------------------------------- #
+CSP_DEFAULT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    "https://stats.g.doubleclick.net",
+    "https://www.googletagmanager.com",
+    "https://region1.google-analytics.com",
+)
+
+CSP_CONNECT_SRC = (
+    "'self'",
+    "https://stats.g.doubleclick.net",
+    "https://region1.google-analytics.com",  # Analytics-Domain
+    "https://www.googletagmanager.com",  # Optional, if Tag Manager establishes connections
+    "http://localhost:8000",  # For local development environments
+)
+
+CSP_IMG_SRC = (
+    "'self'",
+    "data:",
+    "https://www.google.de",
+    "https://stats.g.doubleclick.net",
+    "https://region1.google-analytics.com",
+    "https://www.googletagmanager.com",
+)
+
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    "'unsafe-eval'",
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com",
 )
 
 LANGUAGE_CODE = "de-de"

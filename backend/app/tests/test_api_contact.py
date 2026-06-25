@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+from django.core.cache import cache
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -9,6 +10,10 @@ from app.services.email import ResendError
 
 class CategoryListAPITest(APITestCase):
     url = "/api/contact/"
+
+    def setUp(self):
+        # Reset throttle history so tests don't interfere with each other
+        cache.clear()
 
     @classmethod
     def setUpTestData(cls):
@@ -62,3 +67,13 @@ class CategoryListAPITest(APITestCase):
             response.data["message"], "E-Mail konnte nicht gesendet werden."
         )
         mock_send.assert_called_once()
+
+    @patch("app.views.send_contact_email")
+    def test_post_exceeds_rate_limit_returns_429(self, mock_send):
+        # contact throttle rate is 5/hour; the 6th request must be blocked
+        for _ in range(5):
+            ok = self.client.post(self.url, self.valid_payload(), format="json")
+            self.assertEqual(ok.status_code, status.HTTP_201_CREATED)
+
+        blocked = self.client.post(self.url, self.valid_payload(), format="json")
+        self.assertEqual(blocked.status_code, status.HTTP_429_TOO_MANY_REQUESTS)

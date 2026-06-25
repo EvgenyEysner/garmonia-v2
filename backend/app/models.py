@@ -21,7 +21,7 @@ class Treatment(models.Model):
     )
     description = models.TextField("Beschreibung", null=True, blank=True)
     price = models.CharField(
-        "Preise", max_length=5, null=True
+        "Preise", max_length=20, null=True
     )  # charField for entries such as, for example, 60€ or more
 
     class Meta:

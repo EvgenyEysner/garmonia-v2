@@ -46,10 +46,10 @@ class MonthlyOfferListAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_list_offers(self):
+        # The viewset only exposes active offers
         response = self.client.get(self.url)
-        self.assertEqual(len(response.data), 2)
-        self.assertFalse(response.data[0]["active"])
-        self.assertTrue(response.data[1]["active"])
+        self.assertEqual(len(response.data), 1)
+        self.assertTrue(response.data[0]["active"])
 
     def test_list_response_shape(self):
         response = self.client.get(self.url)

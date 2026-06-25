@@ -72,6 +72,7 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - staticfiles:/src/staticfiles:ro
       - media:/src/media:ro
       - certbot-etc:/etc/letsencrypt:ro
@@ -85,6 +86,8 @@ services:
       - backend
       - frontend
     restart: unless-stopped
+    # Reload every 6h so renewed Let's Encrypt certs are picked up without manual action
+    command: sh -c "while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g 'daemon off;'"
     healthcheck:
       test: [ "CMD-SHELL", "nginx -t && wget -q -O- --no-verbose --tries=1 --spider http://127.0.0.1:80/ || exit 1" ]
       interval: 30s
