@@ -53,15 +53,23 @@ import about4 from "@/assets/images/about/about-4.webp";
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
                   :src="about1"
-                  alt="Facial Treatment"
+                  alt="Gesichtsbehandlung im Kosmetikstudio Oldenburg"
                   class="w-full h-64 object-cover"
+                  width="380"
+                  height="380"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
                   :src="about2"
-                  alt="Salon Interior"
+                  alt="Innenansicht des Kosmetikstudios in Oldenburg"
                   class="w-full h-48 object-cover"
+                  width="512"
+                  height="512"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -69,15 +77,23 @@ import about4 from "@/assets/images/about/about-4.webp";
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
                   :src="about3"
-                  alt="Massage Treatment"
+                  alt="Entspannende Beauty-Behandlung im Studio Oldenburg"
                   class="w-full h-48 object-cover"
+                  width="512"
+                  height="732"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="rounded-2xl overflow-hidden shadow-lg">
                 <img
                   :src="about4"
-                  alt="Beauty Products"
+                  alt="Hochwertige Kosmetikprodukte im Kosmetikstudio Oldenburg"
                   class="w-full h-64 object-cover"
+                  width="640"
+                  height="426"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ArrowRight, Sparkles } from "@lucide/vue";
-import heroImage from "@/assets/images/home-header.webp";
 import { scrollToContact } from "@/utils.ts";
 
 const scrollToServices = () => {
@@ -85,10 +84,19 @@ const scrollToServices = () => {
         <div class="relative">
           <div class="relative rounded-3xl overflow-hidden shadow-2xl">
             <img
-              :src="heroImage"
+              src="/images/hero-960.webp"
+              srcset="
+                /images/hero-640.webp   640w,
+                /images/hero-960.webp   960w,
+                /images/hero-1280.webp 1280w
+              "
+              sizes="(min-width: 768px) 50vw, 100vw"
               alt="Kosmetikstudio Schönheitsecke Oldenburg"
               class="w-full h-[600px] object-cover"
+              width="1280"
+              height="478"
               loading="lazy"
+              decoding="async"
             />
             <div
               class="absolute inset-0 bg-gradient-to-t from-sand-900/20 to-transparent"

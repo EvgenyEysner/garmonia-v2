@@ -24,6 +24,7 @@ const STUDIO_LOCATION: [number, number] = parseStudioLocation(
 
 const mapContainer = ref<HTMLElement | null>(null);
 let map: LeafletMap | null = null;
+let mapObserver: IntersectionObserver | null = null;
 
 async function initMap() {
   if (!mapContainer.value || map || import.meta.env.SSR) return;
@@ -156,10 +157,29 @@ async function handleSubmit() {
 
 onMounted(() => {
   loadTreatments();
-  void initMap();
+
+  // Leaflet (~150 KB JS + CSS) erst laden, wenn die Karte in Sichtweite
+  // kommt. Spart beim ersten Seitenaufruf ungenutztes JavaScript.
+  if (mapContainer.value && "IntersectionObserver" in window) {
+    mapObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          mapObserver?.disconnect();
+          mapObserver = null;
+          void initMap();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    mapObserver.observe(mapContainer.value);
+  } else {
+    void initMap();
+  }
 });
 
 onBeforeUnmount(() => {
+  mapObserver?.disconnect();
+  mapObserver = null;
   map?.remove();
   map = null;
 });

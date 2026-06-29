@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{vue,ts,tsx,js,json,css,md}\""
+    "format": "prettier --write \"src/**/*.{vue,ts,tsx,js,json,css,md}\"",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@lucide/vue": "^1.17.0",
@@ -30,6 +31,7 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-vue": "^9.31.0",
     "prettier": "^3.4.2",
+    "sharp": "^0.35.2",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.18.0",
