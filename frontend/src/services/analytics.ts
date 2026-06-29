@@ -19,8 +19,12 @@ function isEnabled(): boolean {
 function ensureGtagStub(): void {
   window.dataLayer = window.dataLayer ?? [];
   if (!window.gtag) {
-    window.gtag = (...args: unknown[]) => {
-      window.dataLayer?.push(args);
+    // gtag.js erwartet das `arguments`-Objekt im dataLayer. Ein per Spread
+    // erzeugtes Array (`(...args) => push(args)`) wird NICHT als Befehl erkannt,
+    // wodurch consent/js/config/event ignoriert würden.
+    window.gtag = function gtag() {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer!.push(arguments);
     };
   }
 }
