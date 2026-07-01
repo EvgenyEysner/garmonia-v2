@@ -6,18 +6,32 @@ import eslintConfigPrettier from "eslint-config-prettier";
 export default tseslint.config(
   { ignores: ["dist/**", "node_modules/**", "**/*.min.js"] },
   js.configs.recommended,
-  ...pluginVue.configs["flat/recommended"],
   ...tseslint.configs.recommended,
-  eslintConfigPrettier,
+  ...pluginVue.configs["flat/recommended"],
+  // .vue-Dateien: vue-eslint-parser (aus pluginVue oben) nutzt fuer die
+  // <script lang="ts">-Bloecke den TypeScript-Parser.
   {
+    files: ["**/*.vue"],
     languageOptions: {
       parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
         parser: tseslint.parser,
-        extraFileExtensions: [".vue"],
       },
     },
+  },
+  // Node-Skripte / Config-Dateien laufen in der Node-Umgebung.
+  {
+    files: ["scripts/**/*.{js,mjs,cjs}", "*.config.{js,mjs,cjs,ts}"],
+    languageOptions: {
+      globals: {
+        process: "readonly",
+        console: "readonly",
+        Buffer: "readonly",
+        URL: "readonly",
+      },
+    },
+  },
+  eslintConfigPrettier,
+  {
     rules: {
       "vue/multi-word-component-names": "warn",
     },
